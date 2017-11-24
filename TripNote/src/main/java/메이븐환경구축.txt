@@ -269,11 +269,11 @@ FATAL > ERROR > WARN > INFO > DEBUG > TRACE
 (TripNote > src/main/resources > log4j.xml) - 로그 레벨을 지정
 
 <!-- Application Loggers -->
-<logger name="com.hanbit.test">
+<logger name="com.bug.tripnote">
 	<level value="debug" />
 </logger>
 
--> logger에서 지정한 com.hanbit.test 아래에서
+-> logger에서 지정한 com.bug.tripnote 아래에서
 Logger logger = LoggerFactory.getLogger(getClass()); 이런식으로 선언하고
 logger.debug("Service : 메시지 모델 생성"); 이런식으로 찍고자하는 로그를 찍을 수 있다
 logger.warn("실 테이블에서 메세지 가져오세요");
