@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bug.tripnote.model.TestVO;
 import com.bug.tripnote.service.TestService;
 
+/**
+ * 
+ * @author 김은정
+ *
+ */
+
 @Controller
 public class TestController {
 	/*

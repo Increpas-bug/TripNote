@@ -1,5 +1,11 @@
 package com.bug.tripnote.model;
 
+/**
+ * 
+ * @author 김은정
+ *
+ */
+
 public class TestVO {
 
 	private String test;

@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 import com.bug.tripnote.dao.TestDAO;
 import com.bug.tripnote.model.TestVO;
 
+/**
+ * 
+ * @author 김은정
+ *
+ */
+
 @Service
 public class TestService {
 
