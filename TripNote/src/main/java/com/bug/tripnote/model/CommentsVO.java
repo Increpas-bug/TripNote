@@ -46,8 +46,8 @@ public class CommentsVO {
 	public String toString() {
 		return "CommentsVO [comment_no=" + comment_no
 				+ ", comment_content=" + comment_content
-				+ ", pvo=" + posting_no.getPosting_no()
-				+ ", uvo=" + no.getNo() + "]";
+				+ ", posting_no=" + posting_no.getPosting_no()
+				+ ", no=" + no.getNo() + "]";
 	}
 
 }
