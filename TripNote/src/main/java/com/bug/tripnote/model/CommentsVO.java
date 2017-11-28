@@ -3,8 +3,8 @@ package com.bug.tripnote.model;
 public class CommentsVO {
 	private int comment_no; // 댓글번호
 	private String comment_content; // 댓글내용
-	private PostingVO pvo; // 게시글번호
-	private UsersVO uvo; // 회원번호
+	private PostingVO posting_no; // 게시글번호
+	private MemberVO no; // 회원번호
 	// ----------------------------------
 
 	public int getComment_no() {
@@ -23,29 +23,31 @@ public class CommentsVO {
 		this.comment_content = comment_content;
 	}
 
-	public PostingVO getPvo() {
-		return pvo;
+	public PostingVO getPosting_no() {
+		return posting_no;
 	}
 
-	public void setPvo(PostingVO pvo) {
-		this.pvo = pvo;
+	public void setPosting_no(PostingVO posting_no) {
+		this.posting_no = posting_no;
 	}
 
-	public UsersVO getUvo() {
-		return uvo;
+	public MemberVO getNo() {
+		return no;
 	}
 
-	public void setUvo(UsersVO uvo) {
-		this.uvo = uvo;
+	public void setNo(MemberVO no) {
+		this.no = no;
 	}
 
 	// ----------------------------------
+	
+
 	@Override
 	public String toString() {
 		return "CommentsVO [comment_no=" + comment_no
 				+ ", comment_content=" + comment_content
-				+ ", pvo=" + pvo.getPosting_no()
-				+ ", uvo=" + uvo.getUser_no() + "]";
+				+ ", pvo=" + posting_no.getPosting_no()
+				+ ", uvo=" + no.getNo() + "]";
 	}
 
 }
