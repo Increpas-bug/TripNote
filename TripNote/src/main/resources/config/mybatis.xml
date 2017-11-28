@@ -8,6 +8,8 @@
 		<typeAlias type="com.bug.tripnote.model.TestVO" alias="Test"></typeAlias>
 		<typeAlias type="com.bug.tripnote.model.MemberVO" alias="Member"></typeAlias>
 		<typeAlias type="com.bug.tripnote.model.PostingVO" alias="Posting"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.BlogVO" alias="Blog"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.CommentsVO" alias="Comments"></typeAlias>
 	</typeAliases>
 
 	<mappers>
