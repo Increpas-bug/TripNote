@@ -6,14 +6,22 @@
 
 	<typeAliases>
 		<typeAlias type="com.bug.tripnote.model.TestVO" alias="Test"></typeAlias>
-		<typeAlias type="com.bug.tripnote.model.MemberVO" alias="Member"></typeAlias>
-		<typeAlias type="com.bug.tripnote.model.PostingVO" alias="Posting"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.BadVO" alias="Bad"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.BlackListVO" alias="BlackList"></typeAlias>
 		<typeAlias type="com.bug.tripnote.model.BlogVO" alias="Blog"></typeAlias>
 		<typeAlias type="com.bug.tripnote.model.CommentsVO" alias="Comments"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.FallowingVO" alias="Fallowing"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.FavoriteVO" alias="Favorite"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.HashtagVO" alias="Hashtag"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.KeepingVO" alias="Keeping"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.MemberVO" alias="Member"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.PostingVO" alias="Posting"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.UserfavoriteVO" alias="Userfavorite"></typeAlias>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="sqlmap/test.xml" />
+		<mapper resource="sqlmap/blog.xml" />
 	</mappers>
 
 </configuration>

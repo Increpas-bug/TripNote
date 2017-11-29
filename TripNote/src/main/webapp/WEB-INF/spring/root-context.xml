@@ -53,7 +53,7 @@
 	<!-- Mapper Interface 설정 -->
 	<bean id="mapperFactoryBean" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<!-- value="mapper의 namespace" -->
-		<property name="mapperInterface" value="com.bug.tripnote.dao.TestMapper"></property>
+		<property name="mapperInterface" value="com.bug.tripnote.dao.MainMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 

@@ -26,7 +26,7 @@ public class TestDAO {
 	
 	@Autowired
 	//private SqlSessionTemplate sqlSessionTemplate;
-	private TestMapper mapper;
+	private MainMapper mapper;
 	
 	public TestVO selectTest() {
 //		TestVO vo = sqlSessionTemplate.selectOne("tripnote_test.selectTest");

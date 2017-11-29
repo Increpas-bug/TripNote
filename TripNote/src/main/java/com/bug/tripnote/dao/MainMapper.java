@@ -8,6 +8,6 @@ import com.bug.tripnote.model.TestVO;
  *
  */
 
-public interface TestMapper {
+public interface MainMapper {
 	public TestVO selectTest();
 }
