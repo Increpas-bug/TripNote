@@ -1,5 +1,6 @@
 package com.bug.tripnote.dao;
 
+import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.model.TestVO;
 
 /**
@@ -10,4 +11,5 @@ import com.bug.tripnote.model.TestVO;
 
 public interface MainMapper {
 	public TestVO selectTest();
+	public int insertMember(MemberVO vo);
 }

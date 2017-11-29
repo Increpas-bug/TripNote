@@ -45,6 +45,11 @@ public class MemberVO {
 	public void setAdminyn(String adminyn) {
 		this.adminyn = adminyn;
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", no=" + no + ", nickname=" + nickname + ", pw=" + pw + ", birth=" + birth
+				+ ", adminyn=" + adminyn + "]";
+	}
 	
 
 }
