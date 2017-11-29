@@ -21,7 +21,7 @@ import com.bug.tripnote.service.TestService;
  */
 
 @Controller
-@RequestMapping("/myblog.do")
+@RequestMapping("/3_My_Main.do")
 public class BlogController {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -30,7 +30,7 @@ public class BlogController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String myblog(Model model) {
-		return "myblog";
+		return "myblog/3_My_Main";
 	}
 	
 	/* 작업중...
