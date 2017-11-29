@@ -22,6 +22,7 @@
 	<mappers>
 		<mapper resource="sqlmap/test.xml" />
 		<mapper resource="sqlmap/blog.xml" />
+		<mapper resource="sqlmap/Member.xml" />
 	</mappers>
 
 </configuration>
