@@ -1,5 +1,7 @@
 package com.bug.tripnote.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 
  * @author 이진수
@@ -16,6 +18,7 @@ public class BlogVO {
 	private String blog_font; //블로그글꼴
 	private String blog_backgroundcolor; //블로그배경색
 	private String blog_titlecolor; //블로그제목색
+	private MultipartFile mfile;
 	
 	//----------------------------------------------
 	public int getBlog_no() {
@@ -72,13 +75,18 @@ public class BlogVO {
 	public void setBlog_titlecolor(String blog_titlecolor) {
 		this.blog_titlecolor = blog_titlecolor;
 	}
-	//----------------------------------------------
+	public MultipartFile getMfile() {
+		return mfile;
+	}
+	public void setMfile(MultipartFile mfile) {
+		this.mfile = mfile;
+	}
 	@Override
 	public String toString() {
 		return "BlogVO [blog_no=" + blog_no + ", user_no=" + user_no + ", blog_title=" + blog_title + ", blog_detail="
 				+ blog_detail + ", blog_profile_photo=" + blog_profile_photo + ", blog_title_photo=" + blog_title_photo
 				+ ", blog_font=" + blog_font + ", blog_backgroundcolor=" + blog_backgroundcolor + ", blog_titlecolor="
-				+ blog_titlecolor + "]";
+				+ blog_titlecolor + ", mfile=" + mfile + "]";
 	}
 	
 }
