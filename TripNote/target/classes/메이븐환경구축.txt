@@ -1,0 +1,343 @@
+[개발 환경]
+STS 3.9.0
+jdk1.8.0_101
+oracle
+Tomcat 8.5
+
+메이븐 기반 + 스프링 MVC 프레임워크 + 마이바티스 + HTML5
++ 로그 + 매퍼인터페이스
+
+[메이븐기반 스프링구조 환경구축 과정]
+1. workspace_final_kim 생성
+
+2. Window > Preferences 설정
+1) General > Workspace : UTF-8 설정
+2) General > Content Types > Java Properties : UTF-8 설정
+3) Web > CSS, HTML, JSP Files : UTF-8 설정
+4) Web > JSP Files > Editor > Templates > New JSP File (html) : HTML5 설정
+
+3. 서버 생성 : Tomcat 8.5
+server.xml 수정 : Connector에 URIEncoding="utf-8" 추가
+
+4. New > Spring Legacy Project 생성
+프로젝트명 : TripNote
+
+5. 프로젝트 우클릭 > Properties > Project Facets
+1) Java : 1.8 변경
+2) Runtimes : Apache Tomcat v8.5 체크
+
+6. pom.xml
+1) java-version : 1.8
+2) org.springframework-version : 4.1.2.RELEASE
+
+7. src > main > webapp > WEB-INF > web.xml
+한글 인코딩을 위한 filter 추가(utf-8)
+	<!-- filter for encoding -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+[pom.xml 수정]
+*repository 추가
+
+	<!-- 저장소 추가 -->
+	<repositories>
+		<repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+	</repositories>
+	
+*dependency 추가
+
+		<!-- 추가 start -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.7.2</version>
+		</dependency>
+	
+		<!-- 오라클 드라이버 추가 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>
+		
+		<!-- Mybatis 추가 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.8</version>
+		</dependency>
+		
+		<!-- Mybatis-spring 추가 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		
+		<!-- Spring jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.1.2.RELEASE</version>
+		</dependency>
+			
+		<!-- Spring tx -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.1.2.RELEASE</version>
+		</dependency>
+		
+		<!-- spring-orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.1.2.RELEASE</version>
+		</dependency>
+		
+		<!-- spring-test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.1.2.RELEASE</version>
+		</dependency>
+		
+		<!-- aopalliance -->
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<!-- commons-dbcp 추가 -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<!-- commons-lang 추가 -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		
+		<!-- 파일 업로드 처리, 다운로드 라이브러리
+			https://m.blog.naver.com/PostView.nhn?blogId=javaking75&logNo=140203390797&proxyReferer=https:%2F%2Fwww.google.co.kr%2F
+		 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<!-- JSR303 빈 유효성검증구현체 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.1.Final</version>
+		</dependency>
+		
+		<!-- import javax.validation.Valid 하기 위한 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.0.0.GA</version>
+		</dependency>
+		
+		<!-- 추가 end -->
+
+8. src > main > webapp > WEB-INF > spring > root-context.xml 수정
+1) Namespaces 선택 : beans, tx 체크
+2) Source 추가
+	<!-- for Database Connection -->
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/myoracle" resource-ref="true" />
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- mybatis-spring-1.2.0.jar 
+		classpath : src/main/resources
+	-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/mybatis.xml" />
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" index="0" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+9. src > main > webapp > WEB-INF > spring > appServlet > servlet-context.xml 수정
+1) Namespaces 선택 : beans, context, mvc, tx 체크
+2) Source 수정
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<default-servlet-handler />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.bug.tripnote" />
+	
+	<!-- 접속 페이지 설정 -->
+	<view-controller path="/" view-name="index"/>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+10. 디비설정
+1) src > main > webapp 아래 META-INF 폴더 생성
+2) context.xml 파일 생성
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 톰켓 서버에 웹앱에서 사용할
+DBCP 자원을 jdbc/myoracle 식별자로 등록 -->
+<context>
+	<!-- Tomcat 8.5 버젼 -->
+	<Resource name="jdbc/myoracle" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+              username="tripnote" password="bug1234" />
+</context>
+
+11. 데이터 베이스 사용자 생성
+system/oracle로 접속후 tripnote/bug1234 사용자 생성
+-- 테스트 테이블 생성
+create table test (
+    test varchar2(100)
+);
+insert into test values('test success');
+
+12. mybatis.xml 설정
+1) src/main/resources 아래 config 폴더 생성
+2) Mybatis Configuration XML 생성 : mybatis.xml
+3) mybatis.xml 수정
+
+	<typeAliases>
+		<typeAlias type="com.bug.tripnote.model.TestVO" alias="Test"></typeAlias>
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="sqlmap/test.xml" />
+	</mappers>
+
+13. 패키지 추가 및 test 파일 생성
+1) src/main/java 아래 패키지 생성
+com.bug.tripnote.controller
+com.bug.tripnote.dao
+com.bug.tripnote.model
+com.bug.tripnote.service
+
+2) 각 패키지 아래 test를 위한 파일 생성
+
+14. 뷰 생성
+뷰경로 : src > main > webapp > WEB-INF > views
+1) index.jsp 생성 : test.do를 호출
+2) test.jsp 생성 : test.do호출시 컨트롤러를 거쳐 뷰에 도달하여 결과를 찍도록 간단한 결과페이지 생성
+
+15. 완료
+결과 페이지 : http://localhost:8282/tripnote/test.do
+test 디비에 들어간 내용 "test success" 가 뜨면 테스트 성공(Database 연결 성공)
+
+-------------------------------------------------------------
+
+*로그넣기
+JCL
+log4J
+slf4j(기본구조) + log4J(실제로그)
+
+볼 수 있는  로그 레벨
+FATAL > ERROR > WARN > INFO > DEBUG > TRACE
+특정 로그 레벨 입력하면 그 이하의 로그만 볼수 있다.
+그래서 볼 수 있는 가장 높은  수준 TRACE는 
+모든 수준의 로그들을 확인 할수 있다.
+
+(TripNote > src/main/resources > log4j.xml) - 로그 레벨을 지정
+
+<!-- Application Loggers -->
+<logger name="com.bug.tripnote">
+	<level value="debug" />
+</logger>
+
+-> logger에서 지정한 com.bug.tripnote 아래에서
+Logger logger = LoggerFactory.getLogger(getClass()); 이런식으로 선언하고
+logger.debug("Service : 메시지 모델 생성"); 이런식으로 찍고자하는 로그를 찍을 수 있다
+logger.warn("실 테이블에서 메세지 가져오세요");
+logger.info("ControllerLog : {},{}", log1,log2); // 값넣는 형식
+
+-------------------------------------------------------------
+
+*매퍼인터페이스 (Mapper Interface)
+패키지이름 + "." + 인터페이스이름 + "." + 메소드이름
+이
+네임스페이스 + "." + SQL의 ID
+
+1. mapper의 namespace를 [패키지이름 + "." + 인터페이스이름] 아래처럼 넣고
+<mapper namespace="com.bug.tripnote.dao.TestMapper">
+
+2. com.bug.tripnote.dao 패키지 아래 TestMapper 인터페이스 생성
+메소드명을 sql의 이름과 동일하게 생성, 파라미터/리턴타입도 동일하게 맞춤
+
+(TripNote > src > com.bug.tripnote.dao > TestMapper.java)
+package com.bug.tripnote.dao;
+
+import java.util.List;
+
+import com.bug.tripnote.model.TestVO;
+
+public interface TestMapper {
+
+	// 패키지명과 mapper의 namespace의 그룹아이디를 동일하게
+	// 인터페이스명은 mapper의 namespace의 아티팩트아이디와 동일하게
+	// 메소드명은 sql의 id명으로
+	// return 형은 sql의 return타입에 맞춰서
+	// 매개변수 타입은 parameter타입에 맞춰서
+	public TestVO selectTest();
+}
+
+(root-context.xml) 에 매퍼인터페이스 설정
+<!-- Mapper Interface 설정 -->
+<bean id="mapperFactoryBean" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<!-- value="mapper의 namespace" -->
+	<property name="mapperInterface" value="com.bug.tripnote.dao.TestMapper"></property>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+</bean>
+
+3. DAO에서 주입받기(TestDAO.java)
+1) 멤버변수 선언
+@Autowired
+TestMapper mapper;
+2) 메소드내에서 쿼리 호출
+mapper.selectTest(); // SqlSessionTemplate로 호출하지 않고 매퍼인터페이스를 이용해서 호출
+
+
+
+
