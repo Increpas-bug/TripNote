@@ -10,7 +10,6 @@
 <body>
         <h1>회원가입 페이지2222</h1>
         
-       <!-- <form action="joinForm.do" method="post" name="frm"> -->
          <form:form action="join.do" method="post" commandName="member" >
  
 
