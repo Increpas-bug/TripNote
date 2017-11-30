@@ -25,44 +25,38 @@
 					</div>
 						<div class="col-md-6">
 							
-							<!-- 이메일 주소 = 아이디 -->
+							<!-- 이메일 주소=아이디 -->
 							<div class="form-group">
-								<input class="form-control" id="email" type="email" placeholder="Your Email *" required
-									   data-validation-required-message="Please enter your email address.(ID)">
+								<input class="form-control" id="email" type="email" placeholder="이메일(아이디) *" required
+									   data-validation-required-message="이메일 주소를 입력해 주세요.(ID가 이메일주소입니다.)">
 								<p class="help-block text-danger"></p>
 							</div>
 							
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<input class="form-control" id="phone" type="tel" placeholder="Your Password *" required
-									   data-validation-required-message="Please enter your Password.">
+								<input class="form-control" id="phone" type="tel" placeholder="비밀번호 *" required
+									   data-validation-required-message="비밀번호를 입력해주세요.">
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>
 						<div class="col-md-3">
 						</div>
-						<!--  -->
-						<!-- <div class="col-md-6">
-							<div class="form-group">
-								<textarea class="form-control" id="message" placeholder="Your Message *" required
-									      data-validation-required-message="Please enter a message.">
-							    </textarea>
-								<p class="help-block text-danger"></p>
-							</div>
-						</div> -->
 						
-						<!--  -->
+						
+						<!-- 버튼 -->
 						<div class="clearfix"></div>
 						<div class="col-lg-12 text-center">
 							<div id="success"></div>
 							<button id="Login1" class="btn btn-primary btn-xl text-uppercase" type="submit">
-								Membership<br/>Login
+								로그인
 							</button>
+							&nbsp;
 							<button id="Login2" class="btn btn-primary btn-xl text-uppercase" type="submit">
-								Membership<br/>Join
+								회원가입
 							</button>
+							&nbsp;
 							<button id="Login3" class="btn btn-primary btn-xl text-uppercase" type="submit">
-								Manager<br/>Login
+								관리자
 							</button>
 						</div>
 					</div>
