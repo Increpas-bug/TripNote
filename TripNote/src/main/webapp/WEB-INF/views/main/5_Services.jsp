@@ -22,8 +22,12 @@
 			<div class="row text-center">
 				<div class="col-md-4">
 					<span class="fa-stack fa-4x"> 
-						<i class="fa fa-circle fa-stack-2x text-primary"></i> 
-						<i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+						<i class="fa fa-circle fa-stack-2x text-primary">
+						<img class="img-fluid" src="<c:url value="resource/img/Service/01-enjoy.jpg"/>" alt="">
+						</i>
+						<i class="fa fa-shopping-cart fa-stack-1x fa-inverse">
+						
+						</i>
 					</span>
 					<h4 class="service-heading">Enjoy</h4>
 					<p class="text-muted">
@@ -33,8 +37,8 @@
 				<!-- ----------------------------------------------------------------------- -->
 				<div class="col-md-4">
 					<span class="fa-stack fa-4x"> 
-						<i class="fa fa-circle fa-stack-2x text-primary"></i> 
-						<i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+						<i class="fa fa-circle fa-stack-2x text-primary">::before</i> 
+						<i class="fa fa-laptop fa-stack-1x fa-inverse">::before</i>
 					</span>
 					<h4 class="service-heading">Funny</h4>
 					<p class="text-muted">
@@ -44,8 +48,8 @@
 				<!-- ----------------------------------------------------------------------- -->
 				<div class="col-md-4">
 					<span class="fa-stack fa-4x"> 
-						<i class="fa fa-circle fa-stack-2x text-primary"></i> 
-						<i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+						<i class="fa fa-circle fa-stack-2x text-primary">::before</i> 
+						<i class="fa fa-lock fa-stack-1x fa-inverse">::before</i>
 					</span>
 					<h4 class="service-heading">Love</h4>
 					<p class="text-muted">

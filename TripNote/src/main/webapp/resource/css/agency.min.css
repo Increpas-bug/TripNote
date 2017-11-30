@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 section {
-	padding: 100px 0
+	padding: 10% 10%
 }
 
 section h2.section-heading {
@@ -47,7 +47,7 @@ section h3.section-subheading {
 
 @media ( min-width :768px) {
 	section {
-		padding: 150px 0
+		padding: 12% 15%;
 	}
 }
 
@@ -207,8 +207,8 @@ header.masthead .intro-text .intro-heading {
 
 @media ( min-width :768px) {
 	header.masthead .intro-text {
-		padding-top: 300px;
-		padding-bottom: 200px
+		padding-top: 29%;
+	 	padding-bottom: 24%;
 	}
 	header.masthead .intro-text .intro-lead-in {
 		font-size: 40px;
@@ -238,6 +238,8 @@ header.masthead .intro-text .intro-heading {
 #blog .blog-item {
 	right: 0;
 	margin: 0 0 15px
+	
+	
 }
 
 #blog .blog-item .blog-link {
@@ -246,7 +248,8 @@ header.masthead .intro-text .intro-heading {
 	max-width: 400px;
 	margin: 0 auto;
 	cursor: pointer;
-	align-items: center;
+	text-align: center;
+	
 }
 
 #blog .blog-item .blog-link .blog-hover {
@@ -258,6 +261,7 @@ header.masthead .intro-text .intro-heading {
 	transition: all ease .5s;
 	opacity: 0;
 	background: rgba(254, 209, 54, .9);
+	
 }
 
 #blog .blog-item .blog-link .blog-hover:hover {
@@ -290,6 +294,7 @@ header.masthead .intro-text .intro-heading {
 	padding: 25px;
 	text-align: center;
 	background-color: #fff;
+	
 }
 
 #blog .blog-item .blog-caption h4 {
@@ -303,15 +308,18 @@ header.masthead .intro-text .intro-heading {
 	margin: 0;
 	font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial,
 		sans-serif;
+	align-self: flex-end;
 }
 
 #blog * {
 	z-index: 2
+	
 }
 
 @media ( min-width :767px) {
 	#blog .blog-item {
 		margin: 0 0 30px;
+		
 	}
 }
 

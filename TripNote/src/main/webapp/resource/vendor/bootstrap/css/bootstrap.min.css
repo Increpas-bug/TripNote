@@ -81,7 +81,9 @@
 }
 
 *, ::after, ::before {
-	box-sizing: border-box
+	box-sizing: border-box;
+	align-self: flex-end;
+	vertical-align: middle;
 }
 
 html {

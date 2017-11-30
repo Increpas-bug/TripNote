@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h2 class="section-heading text-uppercase">Blog</h2>
+				<h2 class="section-heading text-uppercase">Blog
 				<h3 class="section-subheading text-muted" > Preview </h3>
 				
 				<!-- 로그인 후 페이지이기때문에 로그인이 완성이 안된 관계로 테스트페이지입니다. -->
