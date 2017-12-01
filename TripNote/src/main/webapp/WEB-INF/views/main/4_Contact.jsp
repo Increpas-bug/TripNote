@@ -19,7 +19,8 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<form id="contactForm" name="sentMessage" novalidate>
+				<%-- <form id="login.do" name="sentMessage" novalidate> --%>
+				<form:form commandName="member" action="login.do"  name="sentMessage" method="post">
 					<div class="row">
 					<div class="col-md-3">
 					</div>
@@ -27,14 +28,14 @@
 							
 							<!-- 이메일 주소=아이디 -->
 							<div class="form-group">
-								<input class="form-control" id="email" type="email" placeholder="이메일(아이디) *" required
+								<input class="form-control"  name="user_email" type="text" placeholder="이메일(아이디) *" required
 									   data-validation-required-message="이메일 주소를 입력해 주세요.(ID가 이메일주소입니다.)">
 								<p class="help-block text-danger"></p>
 							</div>
 							
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<input class="form-control" id="phone" type="tel" placeholder="비밀번호 *" required
+								<input class="form-control"  name="user_pw" type="password" placeholder="비밀번호 *" required
 									   data-validation-required-message="비밀번호를 입력해주세요.">
 								<p class="help-block text-danger"></p>
 							</div>
@@ -47,20 +48,20 @@
 						<div class="clearfix"></div>
 						<div class="col-lg-12 text-center">
 							<div id="success"></div>
-							<button id="Login1" class="btn btn-primary btn-xl text-uppercase" type="submit">
+							<button  class="btn btn-primary btn-xl text-uppercase" type="submit">
 								로그인
 							</button>
 							&nbsp;
-							<button id="Login2" class="btn btn-primary btn-xl text-uppercase" type="submit">
+							<button  class="btn btn-primary btn-xl text-uppercase" type="submit">
 								회원가입
 							</button>
 							&nbsp;
-							<button id="Login3" class="btn btn-primary btn-xl text-uppercase" type="submit">
+							<button  class="btn btn-primary btn-xl text-uppercase" type="submit">
 								관리자
 							</button>
 						</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
