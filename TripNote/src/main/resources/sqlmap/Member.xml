@@ -14,15 +14,16 @@
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="Map">
-	insert into users(user_no,user_email,user_nickname,user_pw,user_birth,user_adminyn)
-	values(#{user_no}, #{user_email}, #{user_nickname}, #{user_pw}, #{user_birth}, #{user_adminyn})
-	
+		insert into users(user_no,user_email,user_nickname,user_pw,user_birth,user_adminyn)
+		values(#{user_no}, #{user_email}, #{user_nickname}, #{user_pw}, #{user_birth}, #{user_adminyn})
 	</insert>
 	
-	<insert id="loginCheck" parameterType="Map">
-	select * from member where user_email = #{user_email}
-	
-	</insert>
+	<!-- 이메일/패스워드가 일치하는 회원이 있는지 검증 -->
+	<select id ="selectMember" parameterType="Member" resultMap="MemberResultSet">
+		select * from users
+		where user_email = #{user_email}
+		AND user_pw = #{user_pw}
+	</select>
 
 	
 	

@@ -1,6 +1,5 @@
 package com.bug.tripnote.service;
 
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,27 +28,24 @@ public class MemberService {
 //		logger.info(vo.toString());
 		
 		return row;
-	}
-	/*public int updateMember(MemberVO vo) {
-		int row = dao.updateMember( vo );
-		
-		return row;
 		
 	}
-	public static boolean loginCheck(MemberVO vo, HttpSession session) {
-		// TODO Auto-generated method stub
-		return false;
+			
+	public MemberVO selectMember(MemberVO vo) {
+		System.out.println("MemberService.java : selectMember : 들어옴");
+		MemberVO resultVo = dao.selectMember(vo);
+		return resultVo;
 	}
-	public static void logout(HttpSession session) {
-		// TODO Auto-generated method stub
-		
-	}
-	public static boolean checkpassword(String user_id, String user_password) {
-		// TODO Auto-generated method stub
-		return false;
-	}*/
 	
-	public static boolean loginCheck(MemberVO vo, HttpSession session) {
-		return false;
-	}
+
+	
 }
+	
+	
+	
+	
+		
+		
+	
+	
+

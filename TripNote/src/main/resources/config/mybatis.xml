@@ -24,7 +24,7 @@
 		<mapper resource="sqlmap/blog.xml" />
 		<mapper resource="sqlmap/Member.xml" />
 		<mapper resource="sqlmap/AdminMapper.xml" />
-		<mapper resource="sqlmap/MemberMapper.xml" />
+		<!-- <mapper resource="sqlmap/MemberMapper.xml" /> -->
 	</mappers>
 
 </configuration>

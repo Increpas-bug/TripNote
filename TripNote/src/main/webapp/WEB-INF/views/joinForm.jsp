@@ -14,6 +14,10 @@
  
 
             <table>
+            <tr>
+                    <td>1</td>
+                    <td><input type="text" name="user_no" ></td>
+                </tr>
                 <tr>
                     <td>이메일</td>
                     <td><input type="text" name="user_email" ></td>

@@ -1,6 +1,5 @@
 package com.bug.tripnote.dao;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +36,30 @@ public class MemberDAO {
 		return row;
 	}
 	
-/*	public int updateMember(MemberVO vo) {
-//		TestVO vo = sqlSessionTemplate.selectOne("tripnote_test.selectTest");
-		int row = mapper.updateMember(vo);
-	//	logger.info(vo.toString());
+
+	public MemberVO selectMember(MemberVO vo) {
+		System.out.println("MemberDAO.java : selectMember : 들어옴2");
 		
-		return row;
+		MemberVO resultVo = mapper.selectMember(vo);
+		
+		return resultVo;
+	}
+	
+	
+	/*@Autowired
+	private static SqlSessionTemplate sqlSessionTemplate;
+	
+
+	public MemberVO selectMember(String user_email, String user_pw) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("user_email", user_email);
+		map.put("user_pw", user_pw);
+		return sqlSessionTemplate.selectOne("member_ns.selectMember", map);
 	}*/
+	
+	
+
 	
 
 
