@@ -46,4 +46,8 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return false;
 	}*/
+	
+	public static boolean loginCheck(MemberVO vo, HttpSession session) {
+		return false;
+		
 }
