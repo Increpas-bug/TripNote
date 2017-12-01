@@ -1,5 +1,6 @@
 package com.bug.tripnote.model;
 
+import java.util.List;
 
 //CREATE TABLE posting (
 //posting_no NUMBER NOT NULL, /* 게시글번호 */
@@ -29,6 +30,46 @@ public class PostingVO {
 	private String posting_location; /* 게시글위치정보 */
 	private int user_no; /* 회원번호 */
 	private int blog_no; /* 블로그번호 */
+	
+	// 생성자 추가(전체 포스팅 조회를 위한)	
+	public PostingVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	// PostingVOList 추가
+	private List<PostingVO> postingVOList;	// 게시글의 목록
+
+
+	public PostingVO(List<PostingVO> postingVOList, int posting_no, String posting_title, String posting_content, String posting_date,
+			String posting_uploadpath, int posting_hitcount, int posting_weekly_hitcount, int posting_likecount,
+			int posting_badcount, String posting_location, int user_no, int blog_no) {
+		
+		this.postingVOList = postingVOList;
+		this.posting_no = posting_no;
+		this.posting_title = posting_title;
+		this.posting_content = posting_content;
+		this.posting_date = posting_date;
+		this.posting_uploadpath = posting_uploadpath;
+		this.posting_hitcount = posting_hitcount;
+		this.posting_weekly_hitcount = posting_weekly_hitcount;
+		this.posting_likecount = posting_likecount;
+		this.posting_badcount = posting_badcount;
+		this.posting_location = posting_location;
+		this.user_no = user_no;
+		this.blog_no = blog_no;
+		
+	}
+	
+	// PostingVOList getter,setter 추가
+	public List<PostingVO> getPostingVOList() {
+		return postingVOList;
+	}
+
+	public void setPostingVOList(List<PostingVO> postingVOList) {
+		this.postingVOList = postingVOList;
+	}
+
+	
 	public int getPosting_no() {
 		return posting_no;
 	}

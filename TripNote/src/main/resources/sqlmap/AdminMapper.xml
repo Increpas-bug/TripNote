@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bug.tripnote.dao.mapper.AdminMapper">
+	<resultMap id="PostingResult" type="Posting">
+		<result property="posting_no" column="posting_no" />
+		<result property="posting_title" column="posting_title" />
+		<result property="posting_content" column="posting_content" />
+		<result property="posting_date" column="posting_date" />
+		<result property="posting_uploadpath" column="posting_uploadpath" />
+		<result property="posting_hitcount" column="posting_hitcount" />
+		<result property="posting_weekly_hitcount" column="posting_weekly_hitcount" />
+		<result property="posting_likecount" column="posting_likecount" />
+		<result property="posting_badcount" column="posting_badcount" />
+		<result property="posting_location" column="posting_location" />
+		<result property="user_no" column="user_no" />
+		<result property="blog_no" column="blog_no" />
+
+	</resultMap>
+
+	<resultMap id="MemberResult" type="Member">
+		<id property="no" column="user_no" />
+		<result property="email" column="user_email" />
+		<result property="nickname" column="user_nickname" />
+		<result property="pw" column="user_pw" />
+		<result property="birth" column="user_birth" />
+		<result property="adminyn" column="user_adminyn" />
+		
+		
+
+
+	</resultMap>
+	
+	<resultMap id="BlacklistResult" type="Blacklist">
+		<result property="user_email" column="user_email" />
+		<result property="ban_reason" column="ban_reason" />
+		<result property="ban_date" column="ban_date" />
+
+	</resultMap>
+	
+	
+	<!-- 전체 포스팅 조회 -->
+	<select id="selectAllPosting" resultMap="PostingResult">
+		select * from
+		posting		
+	</select>
+
+
+	<!-- 배드카운팅 누적 포스팅 조회 -->
+	<select id="selectBadPosting" resultMap="PostingResult">
+		select * from
+		posting
+		where posting_badcount > 10
+		order by posting_badcount desc
+	</select>
+
+	<!-- 배드포스팅 삭제 -->
+	<delete id="deleteBadPosting">
+		delete from posting
+		where posting_no=#{posting_no}
+
+	</delete>
+	
+
+	<!--동적쿼리 : 들여쓰기가 0이면 원글이고 답글도 함께 삭제하기위해 삭제조건을 같은 참조번호를 가지는 답글들도 삭제 아니면 답글로 
+		판단하여 그 답글만 삭제 -->
+	<!-- <delete id="deleteBadPosting" parameterType="int"> delete from posting 
+		where <choose> <when test="blevel==0">원글(최상위글,부모글) 이면 bref=#{seq} 부모글을 공유하는 
+		자식답글들 모두를 함께 삭제 </when> <otherwise>답글인 경우 comment_seq=#{seq} </otherwise> 
+		</choose> </delete> -->
+
+	<select id="selectAllMember" resultMap="MemberResult">
+		select * from
+		users
+		order by
+		user_no desc
+	</select>
+
+	<!-- 회원 정지 -->
+	<delete id="banMember">
+		delete from users
+		where user_seq=#{user_seq}	
+
+	</delete>
+	
+	<!-- 블랙리스트 조회 -->
+	<select id="selectBlacklist" resultMap="BlacklistResult">
+		select * from
+		blacklist
+		order by
+		ban_date desc
+	
+	</select>
+	
+	<!-- 블랙리스트 추가 -->	
+	<insert id="insertBlacklist">
+		insert into blacklist
+		(user_email, ban_reason, ban_date)
+		values(#{user_email}, #{ban_reason}, #{ban_date})	
+	</insert>
+
+
+
+</mapper>
