@@ -1,5 +1,7 @@
 package com.bug.tripnote.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +69,7 @@ public class MemberController {
 
 	// 로그인
 	@RequestMapping(value = "/login.do")
-	public String loginMember(@ModelAttribute("member") MemberVO vo) {
+	public String loginMember(@ModelAttribute("member") MemberVO vo, HttpSession session) {
 		// System.out.println("");
 
 		logger.info("따아아아아아앙");
@@ -83,6 +85,9 @@ public class MemberController {
 			return "loginForm";
 		} else {
 			logger.info(resultVo.toString());
+			
+			session.setAttribute("member", resultVo);
+			
 			return "index";
 		}
 
