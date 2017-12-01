@@ -1,5 +1,7 @@
 package com.bug.tripnote.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,5 @@ public class MemberService {
 	
 	public static boolean loginCheck(MemberVO vo, HttpSession session) {
 		return false;
-		
+	}
 }
