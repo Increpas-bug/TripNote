@@ -1,4 +1,4 @@
-package com.bug.tripnote.dao;
+package com.bug.tripnote.dao.mapper;
 
 import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.model.TestVO;
