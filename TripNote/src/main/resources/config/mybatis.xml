@@ -17,6 +17,7 @@
 		<typeAlias type="com.bug.tripnote.model.MemberVO" alias="Member"></typeAlias>
 		<typeAlias type="com.bug.tripnote.model.PostingVO" alias="Posting"></typeAlias>
 		<typeAlias type="com.bug.tripnote.model.UserfavoriteVO" alias="Userfavorite"></typeAlias>
+		<typeAlias type="com.bug.tripnote.model.LikesVO" alias="Likes"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -24,6 +25,7 @@
 		<mapper resource="sqlmap/blog.xml" />
 		<mapper resource="sqlmap/Member.xml" />
 		<mapper resource="sqlmap/AdminMapper.xml" />
+		<mapper resource="sqlmap/favoriteMain.xml" />
 		<!-- <mapper resource="sqlmap/MemberMapper.xml" /> -->
 	</mappers>
 
