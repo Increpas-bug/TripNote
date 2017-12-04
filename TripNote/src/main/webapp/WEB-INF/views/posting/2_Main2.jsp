@@ -10,7 +10,7 @@
 
 <!-- Main -->
 <html lang="en" class="demo-2 no-js">
-	<head>
+<head>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	
 		<meta charset="UTF-8" />
@@ -25,7 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/demo.css'/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/component.css'/>" />
 		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"> -->
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
@@ -35,228 +35,395 @@
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		
+	<!-- 부트스트랩 관련 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style type="text/css">
-/* ul li {
-opacity: 0;
-} */
-
-img {
-width: 233px;
-height: 417px;
+.col-sm-4 {
+	padding-bottom: 10px;
 }
 </style>
 
-</head>
-	
-<!-- <script>
-	$(document).ready(function(){
-    	$("button").hide(0, function(){
-            $("button.viewB").show();
-        });
-    	
-        $("li").each(function(){
-           
-            $("#"+$(this).text()).show();
-        });         
-       
+<script type="text/javascript">
+    $(function() {
+    	/* Tooltip 사용 */
+	    /* $('[data-toggle="tooltip"]').tooltip('toggle'); */
+	    
+    	/* comment 댓글등록 */
+		$(document).on('click', '[data-name="comment"]', function(e) { //e = 이벤트 객체
+			e.preventDefault(); //2. 기본 HTML 섭밋 이벤트 처리 방지
+			var data_key = $(this).eq(0).attr("data-key");
+			var data_type = $(this).eq(0).attr("data-type");
+			var frm_type = '';
+			if (data_type == 'modal') { frm_type = '_modal';}
+			//폼기반 요청
+			var params = $('#frm_comment_'+data_key+frm_type).serialize();
+			console.log("댓글등록");
+            // form 전송
+			$.ajax({
+				type : 'post',
+				url : '<c:url value="/commentWrite.do"/>',
+				data : params,
+				async : true,
+				dataType : 'json',
+				success : function(data) {
+					/* alert('댓글등록성공'); */
+					$.each(data, function(index ,item){
+                        /* 댓글리스트에 추가 */
+                        console.log(item['posting_no']);
+                        console.log(item['comment_no']);
+                        // 댓글 추가
+                        var $span = $('<span></span>');
+                        $span.attr('id', 'cmt_'+item['comment_no']);
+                        $span.appendTo($('#comment_'+item['posting_no']));
+
+                        var comment_text = $('<span>'+item['user_nickname'] + ' : ' + item['comment_content']+'</span>');
+                        var comment_a = $('<a href="#" title="삭제"><span data-name="comment_delete" data-key="'+item['comment_no']+'" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br>');
+                        $span.append(comment_text).append(comment_a);
+                        
+                        // 댓글 모달창에 추가
+                        var $span = $('<span></span>');
+                        $span.attr('id', 'modal_cmt_'+item['comment_no']);
+                        $span.appendTo($('#modal_comment_'+item['posting_no']));
+
+                        var comment_text = $('<span>'+item['user_nickname'] + ' : ' + item['comment_content']+'</span>');
+                        var comment_a = $('<a href="#" title="삭제"><span data-name="comment_delete" data-key="'+item['comment_no']+'" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br>');
+                        $span.append(comment_text).append(comment_a);
+			   			
+                        $('input[name="comment_content"]').val("");
+
+                    });
+                },
+				error : function(xhr, status, err) {//응답 결과 상태코드가 실패했을때 콜백함수
+					alert(err + " => 오류 발생")
+				}
+			});
+		});
+    	/* comment 댓글삭제 */
+		$(document).on('click', '[data-name="comment_delete"]', function(e) { //e = 이벤트 객체
+			e.preventDefault(); //2. 기본 HTML 섭밋 이벤트 처리 방지
+			var data_key = $(this).eq(0).attr("data-key"); // comment_no
+			console.log(data_key);
+			// 폼기반 요청
+            // form 생성
+            var $form = $('<form></form>');
+            $form.attr('id', 'frm_comment_delete_'+data_key);
+            $form.appendTo('body');
+
+            var comment_no = $('<input type="hidden" name="comment_no" value="'+data_key+'">');
+            $form.append(comment_no);
+
+			var params = $('#frm_comment_delete_'+data_key).serialize();
+			console.log("댓글삭제");
+            // form 전송
+			$.ajax({
+				type : 'post',
+				url : '<c:url value="/commentDelete.do"/>',
+				data : params,
+				async : true,
+				dataType : 'json',
+				success : function(data) {
+					/* alert('댓글삭제성공'); */
+					$.each(data, function(index ,item){
+                        /* 댓글리스트에서 삭제 */
+                        $('#cmt_'+item['comment_no']).remove();
+                        $('#modal_cmt_'+item['comment_no']).remove();
+                    });
+                },
+				error : function(xhr, status, err) {//응답 결과 상태코드가 실패했을때 콜백함수
+					alert(err + " => 오류 발생")
+				}
+			});
+			
+		});
+    	/* likes 좋아요/취소 처리 */
+		$('.glyphicon-heart-empty, .glyphicon-heart').click(function(e) { //e = 이벤트 객체
+			e.preventDefault(); //2. 기본 HTML 섭밋 이벤트 처리 방지
+			var data_key = $(this).eq(0).attr("data-key");
+			//폼기반 요청
+			var params = $('#frm_common_'+data_key).serialize();
+			if ($(e.target).is('.glyphicon-heart-empty')) {
+				console.log("좋아요");
+	            // form 전송
+				$.ajax({
+					type : 'post',
+					url : '<c:url value="/like.do"/>',
+					data : params,
+					async : true,
+					dataType : 'json',
+					success : function(data) {
+						/* alert("좋아요") */
+						$.each(data, function(index ,item){
+                            /* 좋아요 아이콘 처리 */
+							$('span[data-name=like][data-key='+ data_key +']').removeClass("glyphicon-heart-empty");
+							$('span[data-name=like][data-key='+ data_key +']').addClass("glyphicon-heart");
+                            /* 좋아요 갯수 처리 */
+                            $('span[data-name=likeCnt][data-key='+ data_key +']').text(item['likecount']);
+						});
+	                },
+					error : function(xhr, status, err) {//응답 결과 상태코드가 실패했을때 콜백함수
+						alert(err + " => 오류 발생")
+					}
+				});
+			} else if ($(e.target).is('.glyphicon-heart')) {
+				console.log("좋아요취소");
+	            // form 전송
+				$.ajax({
+					type : 'post',
+					url : '<c:url value="/likeCancel.do"/>',
+					data : params,
+					async : true,
+					dataType : 'json',
+					success : function(data) {
+						/* alert("좋아요취소") */
+						$.each(data, function(index ,item){
+                            /* 좋아요 아이콘 처리 */
+							$('span[data-name=like][data-key='+ data_key +']').removeClass("glyphicon-heart");
+							$('span[data-name=like][data-key='+ data_key +']').addClass("glyphicon-heart-empty");
+                            /* 좋아요 갯수 처리 */
+                            $('span[data-name=likeCnt][data-key='+ data_key +']').text(item['likecount']);
+						});
+	                },
+					error : function(xhr, status, err) {//응답 결과 상태코드가 실패했을때 콜백함수
+						alert(err + " => 오류 발생")
+					}
+				});
+			}
+		});
+    	/* keeping 보관/삭제 처리 */
+		$('.glyphicon-save, .glyphicon-saved').click(function(e) { //e = 이벤트 객체
+			e.preventDefault(); //2. 기본 HTML 섭밋 이벤트 처리 방지
+			var data_key = $(this).eq(0).attr("data-key");
+			//폼기반 요청
+			var params = $('#frm_common_'+data_key).serialize();
+			if ($(e.target).is('.glyphicon-save')) {
+				console.log("보관");
+	            // form 전송
+				$.ajax({
+					type : 'post',
+					url : '<c:url value="/keeping.do"/>',
+					data : params,
+					async : true,
+					dataType : 'json',
+					success : function(data) {
+						alert("보관처리")
+						$.each(data, function(index ,item){
+							if (item['rownum'] == 1) {
+								$('span[data-name=save][data-key='+ data_key +']').removeClass("glyphicon-save");
+								$('span[data-name=save][data-key='+ data_key +']').addClass("glyphicon-saved");
+							}
+						});
+	                },
+					error : function(xhr, status, err) {//응답 결과 상태코드가 실패했을때 콜백함수
+						console.log("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
+						alert(err + " 오류 발생")
+					}
+				});
+			} else if ($(e.target).is('.glyphicon-saved')) {
+				console.log("삭제");
+	            // form 전송
+				$.ajax({
+					type : 'post',
+					url : '<c:url value="/keepingCancel.do"/>',
+					data : params,
+					async : true,
+					dataType : 'json',
+					success : function(data) {
+						alert("보관취소")
+						$.each(data, function(index ,item){
+							if (item['rownum'] == 1) {
+								$('span[data-name=save][data-key='+ data_key +']').removeClass("glyphicon-saved");
+								$('span[data-name=save][data-key='+ data_key +']').addClass("glyphicon-save");
+							}
+						});
+	                },
+					error : function(xhr, status, err) {//응답 결과 상태코드가 실패했을때 콜백함수
+						console.log("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
+						alert(err + " 오류 발생")
+					}
+				});
+			}
+		});
 	});
-</script> -->
+</script>
+</head>
 
 <body>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-	<div class="container">
-
-		<!-- Top Navigation -->
-		<!-- <div class="codrops-top clearfix">
-				<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/SVGDrawingAnimation/"><span>Previous Demo</span></a>
-				<span class="right"><a href="http://cargocollective.com/isaac317">Artwork by Isaac Montemayor</a><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=18145"><span>Back to the Codrops Article</span></a></span>
-			</div> -->
-		<header class="codrops-header">
-			<!-- <h1>Shape Hover Effect with SVG<span>Recreating the effect as seen on <a href="http://christmasexperiments.com/">The Christmas Experiments</a></span></h1> -->
-			<nav class="codrops-demos">
-				<!-- 임시방편으로 넣어놓음 -->
-				<%-- <a class="current-demo" href="afterMain.do?test=${slist}"
-					style="float: left; display: block;">TripNote Top8</a> --%>
-				<!-- <div class="container2"
-					style="float: left; height: 90px; width: 100%">
-					<button id='koreab' class='btn'>Korea</button>
-					<button id='japanb' class='btn btn-primary'>Japan</button>
-					<button id='englandb' class='btn btn-secondary'>England</button>
-					<button type="button" class="btn">Basic</button>
-					<button type="button" class="btn btn-primary">Primary</button>
-					<button type="button" class="btn btn-secondary">Secondary</button>
-					<button type="button" class="btn btn-success">Success</button>
-					<button type="button" class="btn btn-info">Info</button>
-					<button type="button" class="btn btn-warning">Warning</button>
-					<button type="button" class="btn btn-danger">Danger</button>
-					<button type="button" class="btn btn-dark">Dark</button>
-					<button type="button" class="btn btn-light">Light</button>
-					<button type="button" class="btn btn-link">Link</button>
-				</div> -->
-			</nav>
-<%-- 
-			이미지 경로!!! : ${topMainVO.imageUrl}
-			<c:set var="mainList" value="${TopMainList}"></c:set>
-			one : ${mainList["0"].title} two : ${TopMainList["1"].title}
- --%>
- 
- 			<c:set var="mainList" value="${TopMainList}"></c:set>
-		</header>
-		
-		
-		<section id="grid" class="grid clearfix">
-			<a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/${mainList["0"].imageUrl}'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>${mainList["0"].title}</h2>
-						<p>${mainList["0"].content}</p>
-						<button class="viewB">TOP1</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/${mainList["1"].imageUrl}'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>${mainList["1"].title}</h2>
-						<p>${mainList["1"].content}</p>
-						<button class="viewB">TOP2</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/6.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Languid</h2>
-						<p>Beetroot water spinach okra water chestnut.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/8.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Serene</h2>
-						<p>Water spinach arugula pea tatsoi.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/1.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Nebulous</h2>
-						<p>Pea horseradish azuki bean lettuce.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/3.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Iridescent</h2>
-						<p>A grape silver beet watercress potato.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/5.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Resonant</h2>
-						<p>Chickweed okra pea winter purslane.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/7.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Zenith</h2>
-						<p>Salsify taro catsear garlic gram.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a>
-		</section>
-		<section class="related">
-			<!-- <p>If you enjoyed these effects you might also like:</p>
-				<div><a href="http://tympanus.net/Tutorials/CaptionHoverEffects/"><h4>Caption Hover Effects</h4></a></div>
-				<div><a href="http://tympanus.net/Development/AnimatedSVGIcons/"><h4>Animated SVG Icons</h4></a></div> -->
-		</section>
-	</div>
-	<!-- /container -->
-	<script>
-			(function() {
-	
-				function init() {
-					var speed = 330,
-						easing = mina.backout;
-
-					[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
-						var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
-							pathConfig = {
-								from : path.attr( 'd' ),
-								to : el.getAttribute( 'data-path-hover' )
-							};
-
-						el.addEventListener( 'mouseenter', function() {
-							path.animate( { 'path' : pathConfig.to }, speed, easing );
-						} );
-
-						el.addEventListener( 'mouseleave', function() {
-							path.animate( { 'path' : pathConfig.from 
-		}, speed, easing);
-							});
-						});
-			}
-
-			init();
-
-		})();
-	</script>
-	<br/>
-	<br/>
-
-	<!-- 관심사 버튼 정렬을 위한 ul li -->
-	<%-- <ul>
-		<c:forEach var="list" items="${slist}">
-			<li>${list}</li>
+<div class="container">
+	<div class="row panel-group">
+		<c:forEach var="posting" items="${postingList}" varStatus="stat">
+		<!-- 보관(keeping), 좋아요(likes) -->
+		<form action="" id="frm_common_${posting.posting_no}">
+			<input type="hidden" name="user_no" value="${sessionScope.member.user_no}">
+			<input type="hidden" name="posting_no" value="${posting.posting_no}">
+		</form>
+			<div class="col-sm-4" >
+				<!-- 포스팅 화면 띄우기 -->
+				<article class="panel panel-default">
+				   	<div class="panel-body">
+				   		<!-- 블로그 제목 -->
+				   		${posting.blog_title}<p>
+				   		<div>
+					   		<!-- 포스팅 사진 -->
+					   		<c:if test="${not empty posting.posting_uploadpath}">
+								<!-- Trigger the modal with a button -->
+								<a data-toggle="modal" data-target="#photoView_${posting.posting_no}">
+									<img alt="${posting.posting_uploadpath}" src="/upload/${posting.posting_uploadpath}" width="200">
+								</a>
+					   			<p>
+					   		</c:if>
+					   		<!-- 포스팅 제목 / 포스팅 날짜 -->
+					   		${posting.posting_title} <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${posting.posting_date}"/><p>
+					   		<!-- 포스팅 내용 -->
+					   		${posting.posting_content}<p>
+				   		</div>
+				   		<!-- 해시태그 리스트 -->
+				   		<c:forEach var="hashtag" items="${posting.hashtag}">
+				   		#${hashtag.tag}&nbsp;
+				   		</c:forEach>
+				   	</div>
+				   	<div class="panel-footer">
+				   		<!-- 좋아요 / 좋아요 갯수 -->
+						<c:choose>
+							<c:when test="${posting.likesYN =='N'}">
+								<c:set var="hearticon" value="heart-empty"></c:set>
+							</c:when>
+							<c:when test="${posting.likesYN =='Y'}">
+								<c:set var="hearticon" value="heart"></c:set>
+							</c:when>
+						</c:choose>
+						<!-- data-toggle="tooltip" 왜인지 안먹어서 일단 뺐다.. -->
+				   		<a href="#" title="좋아요"><span data-name="like" data-key="${posting.posting_no}" class="glyphicon glyphicon-${hearticon}" aria-hidden="true"></span></a>
+				   		좋아요 <span data-name="likeCnt" data-key="${posting.posting_no}">${posting.posting_likecount}</span>개
+				   		<!-- 댓글 -->
+						<a href="#comment_${posting.posting_no}" data-toggle="collapse" title="댓글"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+						<!-- 보관 -->
+						<c:choose>
+							<c:when test="${posting.keepingYN =='N'}">
+								<c:set var="saveicon" value="save"></c:set>
+							</c:when>
+							<c:when test="${posting.keepingYN =='Y'}">
+								<c:set var="saveicon" value="saved"></c:set>
+							</c:when>
+						</c:choose>
+						<a href="#" title="보관"><span data-name="save" data-key="${posting.posting_no}" class="glyphicon glyphicon-${saveicon}" aria-hidden="true"></span></a>
+						<!-- 신고 -->
+						<a href="#" title="신고"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
+						
+						<!-- 댓글 리스트 -->
+						<div id="comment_${posting.posting_no}" class="collapse">
+							<p>
+							<!-- 댓글입력폼 -->
+				   			<form action="" id="frm_comment_${posting.posting_no}">
+								<input type="hidden" name="user_no" value="${sessionScope.member.user_no}">
+								<input type="hidden" name="posting_no" value="${posting.posting_no}">
+				   				${sessionScope.member.user_nickname} : <input type="text" name="comment_content" >
+								<a href="#" title="댓글"><span data-name="comment" data-key="${posting.posting_no}">댓글</span></a>
+				   			</form>
+				   			<!-- 댓글리스트 -->
+					   		<c:forEach var="comments" items="${posting.comments}" varStatus="cmtStat">
+					   			<!-- 댓글내용 -->
+						   		<span id="cmt_${comments.comment_no}">
+						   			<span>${comments.user_nickname} : ${comments.comment_content}</span>
+						   			<a href="#" title="삭제"><span data-name="comment_delete" data-key="${comments.comment_no}" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br>
+						   		</span>
+					   		</c:forEach>
+						</div>
+			   		</div>
+				</article>
+			</div>
+			
+  <!-- Modal -->
+  <div class="modal fade" id="photoView_${posting.posting_no}" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">${posting.blog_title}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<p><img alt="${posting.posting_uploadpath}" src="/upload/${posting.posting_uploadpath}" width="568"></p>
+	   		<!-- 포스팅 제목 / 포스팅 날짜 -->
+	   		${posting.posting_title} <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${posting.posting_date}"/><p>
+	   		<!-- 포스팅 내용 -->
+	   		${posting.posting_content}<p>
+	   		<!-- 해시태그 리스트 -->
+	   		<c:forEach var="hashtag" items="${posting.hashtag}">
+	   		#${hashtag.tag}&nbsp;
+	   		</c:forEach>
+        </div>
+        <div class="modal-footer">
+        	<div style="text-align: left;">
+		   		<!-- 좋아요 / 좋아요 갯수 -->
+				<c:choose>
+					<c:when test="${posting.likesYN =='N'}">
+						<c:set var="hearticon" value="heart-empty"></c:set>
+					</c:when>
+					<c:when test="${posting.likesYN =='Y'}">
+						<c:set var="hearticon" value="heart"></c:set>
+					</c:when>
+				</c:choose>
+				<!-- data-toggle="tooltip" 왜인지 안먹어서 일단 뺐다.. -->
+		   		<a href="#" title="좋아요"><span data-name="like" data-key="${posting.posting_no}" class="glyphicon glyphicon-${hearticon}" aria-hidden="true"></span></a>
+		   		좋아요 <span data-name="likeCnt" data-key="${posting.posting_no}">${posting.posting_likecount}</span>개
+		   		<!-- 댓글 -->
+				<a href="#modal_comment_${posting.posting_no}" data-toggle="collapse" title="댓글"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+				<!-- 보관 -->
+				<c:choose>
+					<c:when test="${posting.keepingYN =='N'}">
+						<c:set var="saveicon" value="save"></c:set>
+					</c:when>
+					<c:when test="${posting.keepingYN =='Y'}">
+						<c:set var="saveicon" value="saved"></c:set>
+					</c:when>
+				</c:choose>
+				<a href="#" title="보관"><span data-name="save" data-key="${posting.posting_no}" class="glyphicon glyphicon-${saveicon}" aria-hidden="true"></span></a>
+				<!-- 신고 -->
+				<a href="#" title="신고"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a>
+				
+				<!-- 댓글 리스트 -->
+				<div id="modal_comment_${posting.posting_no}" class="collapse">
+					<p>
+					<!-- 댓글입력폼 -->
+		   			<form action="" id="frm_comment_${posting.posting_no}_modal">
+						<input type="hidden" name="user_no" value="${sessionScope.member.user_no}">
+						<input type="hidden" name="posting_no" value="${posting.posting_no}">
+		   				${sessionScope.member.user_nickname} : <input type="text" name="comment_content">
+						<a href="#" title="댓글"><span data-name="comment" data-type="modal" data-key="${posting.posting_no}">댓글</span></a>
+		   			</form>
+		   			<!-- 댓글리스트 -->
+			   		<c:forEach var="comments" items="${posting.comments}" varStatus="cmtStat">
+			   			<!-- 댓글내용 -->
+				   		<span id="modal_cmt_${comments.comment_no}">
+				   			<span>${comments.user_nickname} : ${comments.comment_content}</span>
+				   			<a href="#" title="삭제"><span data-name="comment_delete" data-key="${comments.comment_no}" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a><br>
+				   		</span>
+			   		</c:forEach>
+				</div>
+			</div>
+			<div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          	</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
 		</c:forEach>
-	</ul> --%>
+	</div>
+	<p>
+</div>
+
+	<!-- /container -->
 </body>
 </html>
 

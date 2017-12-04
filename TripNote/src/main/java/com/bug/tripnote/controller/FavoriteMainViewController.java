@@ -37,7 +37,8 @@ public class FavoriteMainViewController {
 		model.addAttribute("postingList", postingList);
 		logger.info(postingList.toString());
 		
-		return "posting/favoriteMainView";
+//		return "posting/favoriteMainView";
+		return "posting/2_Main2";
 	}
 	
 }
