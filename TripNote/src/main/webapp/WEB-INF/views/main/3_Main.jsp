@@ -8,7 +8,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!-- Main -->
-	<header class="masthead">
+	<header class="masthead" id="home">
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-lead-in">Welcome To TripNote!</div>
