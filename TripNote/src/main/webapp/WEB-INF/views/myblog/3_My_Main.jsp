@@ -24,6 +24,13 @@
 				</a></li>
 				<li><a href="blog_theme_update.do">프로필 수정!</a></li>
 			</ul>
+			
+			<ul class="">
+				<li><a href="posting_Write.do" class="icon-pencil"> <span class="label">포스팅 등록</span>
+				</a></li>
+				<li><a href="posting_Search.do"> <span class="label">검색 테스트</span>
+				</a></li>
+			</ul>
 		</div>
 		<!-- timeline -->
 		<section class="timeline">
