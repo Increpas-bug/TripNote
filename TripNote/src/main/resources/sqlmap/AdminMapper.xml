@@ -19,12 +19,12 @@
 	</resultMap>
 
 	<resultMap id="MemberResult" type="Member">
-		<id property="no" column="user_no" />
-		<result property="email" column="user_email" />
-		<result property="nickname" column="user_nickname" />
-		<result property="pw" column="user_pw" />
-		<result property="birth" column="user_birth" />
-		<result property="adminyn" column="user_adminyn" />
+		<id property="user_no" column="user_no" />
+		<result property="user_email" column="user_email" />
+		<result property="user_nickname" column="user_nickname" />
+		<result property="user_pw" column="user_pw" />
+		<result property="user_birth" column="user_birth" />
+		<result property="user_adminyn" column="user_adminyn" />
 		
 		
 
@@ -32,6 +32,7 @@
 	</resultMap>
 	
 	<resultMap id="BlacklistResult" type="Blacklist">
+		
 		<result property="user_email" column="user_email" />
 		<result property="ban_reason" column="ban_reason" />
 		<result property="ban_date" column="ban_date" />
@@ -55,7 +56,7 @@
 	</select>
 
 	<!-- 배드포스팅 삭제 -->
-	<delete id="deleteBadPosting">
+	<delete id="deleteBadPosting" parameterType="int">
 		delete from posting
 		where posting_no=#{posting_no}
 
@@ -77,11 +78,12 @@
 	</select>
 
 	<!-- 회원 정지 -->
-	<delete id="banMember">
+	<delete id="banMember" parameterType="string">
 		delete from users
-		where user_seq=#{user_seq}	
-
+		where user_email=#{user_email}
+	
 	</delete>
+	
 	
 	<!-- 블랙리스트 조회 -->
 	<select id="selectBlacklist" resultMap="BlacklistResult">
@@ -93,10 +95,12 @@
 	</select>
 	
 	<!-- 블랙리스트 추가 -->	
-	<insert id="insertBlacklist">
+	<insert id="insertBlacklist" parameterType="string">
 		insert into blacklist
-		(user_email, ban_reason, ban_date)
-		values(#{user_email}, #{ban_reason}, #{ban_date})	
+		(user_email)
+		values(#{user_email})
+		
+		
 	</insert>
 
 

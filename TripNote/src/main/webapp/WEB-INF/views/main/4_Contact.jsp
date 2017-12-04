@@ -14,58 +14,65 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading text-uppercase">Start TripNote!</h2>
-				<h3 class="section-subheading text-muted">Login&Membership</h3>
-			
-			<!--로그인 후 페이지인데..( 테스트입니다. )-->
-			<a href="2_Main2.do"> test </a>
-			
+				<h3 class="section-subheading text-muted">Login & Membership</h3>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<%-- <form id="login.do" name="sentMessage" novalidate> --%>
-				<form:form commandName="member" action="login.do"  name="sentMessage" method="post">
+				<form id="contactForm" name="sentMessage" novalidate>
 					<div class="row">
 					<div class="col-md-3">
 					</div>
 						<div class="col-md-6">
 							
-							<!-- 이메일 주소=아이디 -->
+							<!-- 이메일 주소 = 아이디 -->
 							<div class="form-group">
-								<input class="form-control"  name="user_email" type="text" placeholder="이메일(아이디) *" required
-									   data-validation-required-message="이메일 주소를 입력해 주세요.(ID가 이메일주소입니다.)">
+								<input class="form-control" id="email" type="email" placeholder="Your Email *" required
+									   data-validation-required-message="Please enter your email address.(ID)">
 								<p class="help-block text-danger"></p>
 							</div>
 							
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<input class="form-control"  name="user_pw" type="password" placeholder="비밀번호 *" required
-									   data-validation-required-message="비밀번호를 입력해주세요.">
+								<input class="form-control" id="phone" type="tel" placeholder="Your Password *" required
+									   data-validation-required-message="Please enter your Password.">
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>
 						<div class="col-md-3">
 						</div>
+						<!--  -->
+						<!-- <div class="col-md-6">
+							<div class="form-group">
+								<textarea class="form-control" id="message" placeholder="Your Message *" required
+									      data-validation-required-message="Please enter a message.">
+							    </textarea>
+								<p class="help-block text-danger"></p>
+							</div>
+						</div> -->
+						
+						<!--  -->
+						<br>
+						<a href="admin_Main.do">admin_Main.do</a>
 						
 						
-						<!-- 버튼 -->
+						<br>
 						<div class="clearfix"></div>
 						<div class="col-lg-12 text-center">
 							<div id="success"></div>
-							<button  class="btn btn-primary btn-xl text-uppercase" type="submit">
-								로그인
+							<button id="Login1" class="btn btn-primary btn-xl text-uppercase" type="submit">
+								Membership<br/>Login
 							</button>
-							&nbsp;
-							<button  class="btn btn-primary btn-xl text-uppercase" type="submit">
-								회원가입
+							<button id="Login2" class="btn btn-primary btn-xl text-uppercase" type="submit">
+								Membership<br/>Join
 							</button>
-							&nbsp;
-							<button  class="btn btn-primary btn-xl text-uppercase" type="submit">
-								관리자
+														
+							<button id="Login3" class="btn btn-primary btn-xl text-uppercase" type="submit">
+								Manager<br/>Login
 							</button>
 						</div>
 					</div>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>

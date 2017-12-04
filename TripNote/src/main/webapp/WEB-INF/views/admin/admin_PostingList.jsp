@@ -50,8 +50,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-	<h1>포스팅 목록</h1>
+<%@include file="1_Header.jsp"%>
+<%@include file="2_Header.jsp"%>
+	<h1>포스팅 목록</h1><a href="admin_Main.do">메인페이지</a>
 	<table>
 
 		<tr>
@@ -93,3 +94,8 @@
 	
 		
 	</table>
+
+
+<%@include file="7_About.jsp"%>
+<%@include file="8_TeamInfo.jsp"%>
+<%@include file="9_Footer.jsp"%>

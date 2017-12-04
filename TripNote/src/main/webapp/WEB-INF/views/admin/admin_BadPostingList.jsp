@@ -95,18 +95,27 @@
 	</table> --%>
 
 
-<!--  게시글 내용 제거 후 링크 추가 -->
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
 
+	function delft(no) {
+		location.href = "/tripnote/admin_DeletePosting.do?posting_no="+no;
+	}
+
+</script>
+
+
+<%@include file="1_Header.jsp"%>
+<%@include file="2_Header.jsp"%>
 <h1>신고받은 포스팅 목록</h1>
 <table>
 
 	<tr>
-		<th>체크</th>
 		<td>게시글번호</td>
 		<td>게시글제목</td>
 		<td>게시글날짜</td>
@@ -118,17 +127,14 @@
 		<td>회원번호</td>
 		<td>블로그번호</td>
 		
-		
+		<!-- 
 		<form action="/admin_DeletePosting.do" >
 			<td><input type="submit" value="배드포스팅 삭제"
 				onclick="location.href='admin_BadPostList.do';" /></td>
-	</tr>
+	</tr> -->
 	<!--  itmes: 컨트롤러 모델 속성에 부여된 값 -->
 	<c:forEach var="postingVO" items="${admin_selectBadPosting}">
-		<tr>
-			<td><input type="checkbox" name="badPosting"
-				value="${postingVO.posting_no}"></td>
-
+		<tr>			
 			<td>${postingVO.posting_no}</td>
 			<td>${postingVO.posting_title}</td>
 			<td>${postingVO.posting_date}</td>
@@ -139,9 +145,16 @@
 			<td>${postingVO.posting_location}</td>
 			<td>${postingVO.user_no}</td>
 			<td>${postingVO.blog_no}</td>
+				
+		<!-- 추가 -->
+			<td><input type="button" value="포스트 삭제"
+				 onclick="delft(${postingVO.posting_no})"></td>
 		</tr>
+	
+		
 	</c:forEach>
-	</form>
+	</tr>
+	
 	<%-- <c:forEach var="postingVO" items="${Model.postingVOList}">
 				<td>${postingVO.posting_content}</td> --%>
 
@@ -149,3 +162,7 @@
 
 
 </table>
+
+<%@include file="7_About.jsp"%>
+<%@include file="8_TeamInfo.jsp"%>
+<%@include file="9_Footer.jsp"%>

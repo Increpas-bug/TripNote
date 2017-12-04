@@ -2,8 +2,6 @@
 
 package com.bug.tripnote.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.service.AdminService;;
 
 @Controller
@@ -23,11 +20,15 @@ public class Admin_InsertBlacklistController {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@RequestMapping(value = "/admin_InsertBlacklist.do", method = RequestMethod.GET)
-	public String handleRequest(Model model ) { 
+	public String handleRequest(Model model, String user_email) { 
 //		MemberVO vo = adminservice.banMember();
 //		model.addAttribute("admin_InsertBlacklist", vo);
-		List<MemberVO> list = adminservice.banMember();
-		model.addAttribute("admin_InsertBlacklist", list);
+//		int vo = adminservice.insertBlacklist(email);
+//		model.addAttribute("admin_InsertBlacklist", vo);
+		
+		adminservice.banMember(user_email);
+	
+		
 		
 		// null  view 값 지정 요망
 		return "admin/admin_Blacklist";	

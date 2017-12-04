@@ -12,15 +12,15 @@ public interface AdminMapper {
 	
 	public List<PostingVO> selectBadPosting();
 	
-	public List<PostingVO> deleteBadPosting();
+	public int deleteBadPosting(int posting_no);
 	
 	public List<MemberVO> selectAllMember();
 	
-	public List<MemberVO> banMember();
+	public int banMember(String user_email);
 	
 	public List<BlacklistVO> selectBlacklist();
 				
-	public List<BlacklistVO> insertBlacklist();
+	public int insertBlacklist(String user_email);
 	
 
 	

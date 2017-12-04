@@ -4,7 +4,6 @@ package com.bug.tripnote.dao;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,13 +69,11 @@ public class AdminDAO {
 	}
 	
 	@Transactional
-	public List<PostingVO> deleteBadPosting(int posting_no) {			
-		List<PostingVO> vo = mapper.deleteBadPosting();	
-		PostingVO postingVO = new PostingVO();
-		postingVO.setPosting_no(posting_no);
-		logger.info(vo.toString());
+	public int deleteBadPosting(int posting_no) {			
+				
+		logger.info("deleteBadPosting() 호출");
 		
-		return vo;
+		return mapper.deleteBadPosting(posting_no);
 	}
 	
 	@Transactional
@@ -87,12 +84,18 @@ public class AdminDAO {
 		return list;
 	}
 	
+//	@Transactional
+//	public List<MemberVO> banMember() {			
+//		List<MemberVO> vo = mapper.banMember();				
+//	logger.info(vo.toString());
+//		
+//		return vo;
+//	}
+	
 	@Transactional
-	public List<MemberVO> banMember() {			
-		List<MemberVO> vo = mapper.banMember();				
-	logger.info(vo.toString());
-		
-		return vo;
+	public int banMember(String user_email) {
+		logger.info("banMember() 호출");
+		return mapper.banMember(user_email);	
 	}
 	
 	@Transactional
@@ -104,9 +107,9 @@ public class AdminDAO {
 	}
 	
 	@Transactional
-	public List<BlacklistVO>  insertBlacklist() {			
-		List<BlacklistVO>  vo = mapper.insertBlacklist();				
-	logger.info(vo.toString());
+	public int  insertBlacklist(String user_email) {			
+		int vo = mapper.insertBlacklist(user_email);				
+	// logger.info(vo);
 		
 		return vo;
 	}

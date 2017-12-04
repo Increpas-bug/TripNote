@@ -52,14 +52,14 @@ public class AdminService {
 	}
 	
 	// 배드포스팅 삭제
-	public List<PostingVO> deleteBadPosting(int posting_no) {	
+	public int deleteBadPosting(int posting_no) {	
 		
 		
 		logger.info("배드포스팅 삭제");		
 		// DAO 리턴
-		List<PostingVO> list = dao.deleteBadPosting(posting_no);
+		int vo = dao.deleteBadPosting(posting_no);
 		
-		return list;
+		return vo;
 
 	}
 	
@@ -74,12 +74,23 @@ public class AdminService {
 	}
 	
 	// 회원 정지
-	public List<MemberVO> banMember() {	
+//	public List<MemberVO> banMember() {	
+//		logger.info("회원 정지");		
+//		// DAO 리턴
+//		List<MemberVO> list = dao.banMember();
+//
+//		return list;
+//	}
+	// int 매개변수 추가
+	public int banMember(String user_email) {	
 		logger.info("회원 정지");		
 		// DAO 리턴
-		List<MemberVO> list = dao.banMember();
-
-		return list;
+		dao.insertBlacklist(user_email); // 블랙리스트 추가
+		int vo = dao.banMember(user_email);
+		
+		
+		return vo;
+		
 	}
 	
 	// 블랙리스트 조회
@@ -92,13 +103,5 @@ public class AdminService {
 
 	}
 	
-	// 블랙리스트 추가
-	public List<BlacklistVO> insertBlacklist() {	
-		logger.info("회원 정지");		
-		// DAO 리턴
-		List<BlacklistVO> list = dao.insertBlacklist();
-		
-		return list;
 
-	}
 }
