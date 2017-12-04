@@ -43,7 +43,7 @@
 
 	<!-- main -->
 	<%@include file="main/1_Header.jsp"%>
-	<%@include file="main/2_Header.jsp"%>
+	<%-- <%@include file="main/2_Header.jsp"%> --%>
 	<%@include file="main/3_Main.jsp"%>
 	<%@include file="main/4_Contact.jsp"%>
 	<%@include file="main/5_Services.jsp"%>
@@ -53,11 +53,5 @@
 	<%@include file="main/9_Footer.jsp"%>
 	<%@include file="main/9_Footer.jsp"%>
 
-<a href="admin/admin_Main.jsp">관리자</a>
+<!-- <a href="admin/admin_Main.jsp">관리자</a> -->
 
-	
-
-
-
-
-	<!-- membership -->

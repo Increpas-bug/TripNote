@@ -32,7 +32,7 @@ public class MemberController {
 	@RequestMapping(value = "/joinForm.do", method = RequestMethod.GET)
 	public String joinForm() {
 		logger.info("회원등록 폼화면으로 갑시다");
-		return "joinForm";
+		return "membership/joinForm";
 	}
 
 	// . 회원 등록

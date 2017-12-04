@@ -50,7 +50,8 @@
 		
 			<a class="navbar-brand js-scroll-trigger" href="http://localhost:8080/tripnote/" style="font-size:25px; font-family:'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
 				TripNote</a>
-	
+
+			<!--  -->		
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -58,19 +59,30 @@
 				Menu <i class="fa fa-bars"></i>
 			</button>
 
-			<!-- menu -->
+			<!-- admin menu -->
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">Login & Membership</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">Services</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#blog">Blog</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">About</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#team">Team Information</a></li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="admin_MemberList.do">
+						All Member
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="admin_Blacklist.do">
+						Black List
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="admin_PostingList.do">
+						All Posting
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="admin_BadPostingList.do">
+						Bad Posting
+						</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>

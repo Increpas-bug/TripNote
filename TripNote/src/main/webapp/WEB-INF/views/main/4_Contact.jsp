@@ -15,6 +15,22 @@
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading text-uppercase">Start TripNote!</h2>
 				<h3 class="section-subheading text-muted">Login & Membership</h3>
+				
+				<!-- admin -->	
+				<a href="admin_Main.do">admin_Main.do</a>
+				<br/>
+				<!-- Favorite -->
+				<c:if test="${not empty sessionScope.member}">
+			    	${sessionScope.member.user_nickname} 님 Hi!!
+					<a href="favoriteMainView.do">FavoriteMainView.do</a>
+				</c:if>
+				<br/>
+				<!-- My -->
+				<a href="3_My_Main.do">3_My_Main.do</a>
+				<br/>
+				<!-- main2 -->
+				<a href="2_Main2.do">2_Main2.do</a>
+				<br/>		
 			</div>
 		</div>
 		<div class="row">
@@ -42,36 +58,22 @@
 						</div>
 						<div class="col-md-3">
 						</div>
-						<!--  -->
-						<!-- <div class="col-md-6">
-							<div class="form-group">
-								<textarea class="form-control" id="message" placeholder="Your Message *" required
-									      data-validation-required-message="Please enter a message.">
-							    </textarea>
-								<p class="help-block text-danger"></p>
-							</div>
-						</div> -->
-						
-						<!--  -->
-						<br>
-						<a href="admin_Main.do">admin_Main.do</a>
-			<c:if test="${not empty sessionScope.member}">
-			       ${sessionScope.member.user_nickname} 님 Hi!!
-				<a href="favoriteMainView.do">FavoriteMainView Test</a>
-			</c:if>
-						
-						
 						<br>
 						<div class="clearfix"></div>
 						<div class="col-lg-12 text-center">
 							<div id="success"></div>
+							<!-- 로그인 -->
 							<button class="btn btn-primary btn-xl text-uppercase" type="submit">
 								Membership<br/>Login
 							</button>
-							<button class="btn btn-primary btn-xl text-uppercase" type="submit">
+							
+							<!-- 회원가입 -->
+							<button class="btn btn-primary btn-xl text-uppercase" type="button"
+							onclick="location.href='joinForm.do'" style="color: #fff;">
 								Membership<br/>Join
 							</button>
-														
+									
+							<!-- 관리자로그인 -->
 							<button class="btn btn-primary btn-xl text-uppercase" type="submit">
 								Manager<br/>Login
 							</button>
