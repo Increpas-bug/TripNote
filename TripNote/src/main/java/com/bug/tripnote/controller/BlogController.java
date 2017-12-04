@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bug.tripnote.model.BlogVO;
-import com.bug.tripnote.model.TestVO;
+import com.bug.tripnote.model.MemberVO;
+
 import com.bug.tripnote.service.BlogService;
-import com.bug.tripnote.service.TestService;
+
 
 /**
  * 
@@ -29,16 +30,22 @@ public class BlogController {
 	private BlogService blogService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String myblog(Model model) {
+	public String myblog(@RequestParam("user_no") String user_no, Model model) {
+		logger.info(user_no);
+		MemberVO mvo = null;
+		mvo = blogService.blogYNSelect(user_no);
+		
+		if(mvo == null) {
+			// 없으면 블로그 생성
+			logger.info("블로그 없음"); 
+			blogService.blogYNInsert(user_no);
+		} else {
+			logger.info("블로그 있음");
+		}
+
+		BlogVO bvo = blogService.blogInfoSelect(user_no);
+		
+		model.addAttribute("blogVO", bvo);
 		return "myblog/3_My_Main";
 	}
-	
-	/* 작업중...
-	 * @RequestMapping(method = RequestMethod.GET)
-	public String myblog(@RequestParam("blog_no") String blog_no,Model model) {
-		logger.info("아 멘붕");
-		BlogVO bvo = blogService.blogInfoSelect(blog_no);
-		model.addAttribute("blogVO", bvo);
-		return "myblog";
-	}*/
 }

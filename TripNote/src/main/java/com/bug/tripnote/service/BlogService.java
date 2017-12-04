@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bug.tripnote.dao.BlogDAO;
 import com.bug.tripnote.model.BlogVO;
+import com.bug.tripnote.model.MemberVO;
 
 
 @Service
@@ -20,17 +21,60 @@ public class BlogService {
 	@Autowired
 	private BlogDAO blogDAO;
 	
-	/*// 블로그 정보 조회
+	//사용자 블로그 여부
 	@Transactional
-	public BlogVO blogInfoSelect(String blog_no) {
-		logger.info(blog_no.toString());
-		return blogDAO.blogInfoSelect(blog_no);
+	public MemberVO blogYNSelect(String user_no) {
+		logger.info(user_no);
+//		logger.info(user_blogyn);
+		return blogDAO.blogYNSelect(user_no);
+	}
+	//블로그 생성
+	@Transactional
+	public void blogYNInsert(String user_no) {
+		// 블로그 생성 dao함수1
+		blogDAO.blogYNInsert(user_no);
+		// 블로그 YN 회원테이블에 update
+		blogDAO.blogYNUpdate(user_no);
+	}
+	//사용자 테이블에 블로그 있다고
+	/*@Transactional
+	public int blogYNUpdate(MemberVO mvo) {
+		return blogDAO.blogYNUpdate(mvo);
 	}*/
 	
-	// 프로필 등록
+	
+	// 블로그 정보 조회
+	@Transactional
+	public BlogVO blogInfoSelect(String user_no) {
+		//logger.info(blog_no.toString());
+		return blogDAO.blogInfoSelect(user_no);
+	}
+	
+	// 프로필 사진 등록
 	@Transactional
 	public int profilePhotoInsert(BlogVO bvo) {
 		logger.info(bvo.toString());
 		return blogDAO.profilePhotoInsert(bvo);
+	}
+	// 프로필 사진 수정
+	@Transactional
+	public void profilePhotoUpdate(BlogVO bvo) {
+		blogDAO.profilePhotoUpdate(bvo);
+	}
+	
+	// 타이틀 사진 등록
+	@Transactional
+	public void titlePhotoInsert(BlogVO bvo) {
+		blogDAO.titlePhotoInsert(bvo);
+	}
+	// 타이틀 사진 수정
+	@Transactional
+	public void titlePhotoUpdate(BlogVO bvo) {
+		blogDAO.titlePhotoUpdate(bvo);
+	}
+	// 블로그 제목/소개글 수정
+	@Transactional
+	public void blogTitleUpdate(BlogVO bvo) {
+		 blogDAO.blogTitleUpdate(bvo);
 	}
 }

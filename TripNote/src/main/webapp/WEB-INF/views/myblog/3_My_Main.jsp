@@ -15,14 +15,24 @@
 	<!-- Main -->
 	<section id="blog">
 		<!-- profile -->
-		<div id="profile">
-			<span class="photo"><img
-				src="/images/${blogVO.blog_profile_photo}" /></span>
-			<h1>앙 진수띠</h1>
+		<c:choose>
+			<c:when test="${not empty blogVO.blog_title_photo}">
+				<c:set var="title_img" value="background-image: url('/upload/${blogVO.blog_title_photo}');" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="title_img" value="" />
+			</c:otherwise>
+		</c:choose>
+		<div id="profile" style="${title_img}">
+			<span class="photo">
+				<img src="/upload/${blogVO.blog_profile_photo}" />
+			</span>
+			<h1>${blogVO.blog_title}</h1>
+			<h3>${blogVO.blog_detail}</h3>
 			<ul class="icons">
 				<li><a href="#" class="icon-pencil"> <span class="label">Write</span>
 				</a></li>
-				<li><a href="blog_theme_update.do">프로필 수정!</a></li>
+				<li><a href="blog_theme.do?user_no=1">블로그 테마 설정</a></li>
 			</ul>
 			
 			<ul class="">
@@ -36,7 +46,7 @@
 		<section class="timeline">
 			<!-- 출력형식 예시화면 -->
 			<div>
-				<a href="./resources/images/fulls/03.jpg"> <img
+			<!-- 	<a href="./resources/images/fulls/03.jpg"> <img
 					src="./resources/images/thumbs/03.jpg" alt="" />
 					<h3>예제 화면입니다.</h3>
 				</a> <a href="./resources/images/fulls/04.jpg"> <img
@@ -45,7 +55,7 @@
 				</a> <a href="./resources/images/fulls/05.jpg"> <img
 					src="./resources/images/thumbs/05.jpg" alt="" />
 					<h3>예제 화면입니다</h3>
-				</a>
+				</a> -->
 			</div>
 		</section>
 

@@ -14,15 +14,46 @@
 		<result property="blog_font" column="blog_font"/>
 		<result property="blog_backgroundcolor" column="blog_backgroundcolor"/>
 		<result property="blog_titlecolor" column="blog_titlecolor"/>
+		<result property="user_blogyn" column="user_blogyn"/>
 	</resultMap>
-	<!-- 프로필용 -->
-	<!-- <select id="blogInfoSelect" parameterType="Blog">
-		select * from blog
-	</select> -->
 	
-	<insert id="profilePhotoInsert" parameterType="Blog">
-		insert into blog (blog_no,,blog_profile_photo)
-		values (blog_seq.NEXTVAL, #{blog_profile_photo})
+	<!-- 1. 사용자가 블로그가 있는지 판단 쿼리 -->
+	<select id="blogYNSelect" parameterType="string" resultType="Member">
+		select * from users where user_blogyn='Y' and user_no=#{user_no}
+	</select>
+	
+	<!-- 2. 없다면 생성  -->
+	<insert id="blogYNInsert" parameterType="string">
+		insert into blog (blog_no, user_no)
+		values (blog_seq.nextval, #{user_no})
 	</insert>
-
+	
+	<!-- 3. 사용자 블로그 업데이트 -->
+	<update id="blogYNUpdate" parameterType="string">
+		update users set user_blogyn='Y' where user_no=#{user_no}
+	</update>
+	
+	<!-- 4. 블로그 정보 불러오기 -->
+	<select id="blogInfoSelect" parameterType="string" resultType="Blog">
+		select * from blog where user_no=#{user_no}
+	</select>
+	
+	<!-- 프로필사진 수정 -->
+	<update id="profilePhotoUpdate" parameterType="Blog">
+		update blog set
+		blog_profile_photo=#{blog_profile_photo} where user_no=#{user_no}	
+	</update>
+	
+	<!-- 타이틀사진 수정 -->
+	<update id="titlePhotoUpdate" parameterType="Blog">
+		update blog set
+		blog_title_photo=#{blog_title_photo} where user_no=#{user_no}	
+	</update>
+	
+	<!-- 블로글 제목 -->
+	<update id="blogTitleUpdate" parameterType="Blog">
+		update blog set
+		blog_title=#{blog_title}, blog_detail=#{blog_detail} where user_no=#{user_no}
+	</update>
+	<!-- 블로그 소개글 -->
 </mapper>
