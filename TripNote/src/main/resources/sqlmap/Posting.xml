@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="posting_ns">
+
+	<resultMap type="Posting" id="PostingResult">
+		<result property="posting_no" column="posting_no" />
+		<result property="posting_title" column="posting_title" />
+		<result property="posting_content" column="posting_content" />
+		<result property="posting_date" column="posting_date" />
+		<result property="posting_uploadpath" column="posting_uploadpath" />
+		<result property="posting_hitcount" column="posting_hitcount" />
+		<result property="posting_badcount" column="posting_badcount" />
+		<result property="posting_location" column="posting_location" />
+		<result property="user_no" column="user_no" />
+		<result property="blog_no" column="blog_no" />
+
+	</resultMap>
+
+	<resultMap type="String" id="PostingHashtagResult">
+		<result property="posting_no" column="posting_no" />
+		<result property="tag" column="tag" />
+	</resultMap>
+
+
+	<insert id="insertPosting" parameterType="Posting">
+		INSERT INTO
+		posting(posting_no, posting_title, posting_content,
+		posting_uploadpath, tag)
+		VALUES(posting_seq.nextval, #{posting_title},
+		#{posting_content}, #{posting_uploadpath}, #{tag})
+	</insert>
+
+	<insert id="insertHashtag" parameterType="String">
+		INSERT INTO
+		HASHTAG(posting_no, tag)
+		VALUES(posting_seq.currval, #{tag})
+	</insert>
+	
+	<select id="selectSearchPosting" resultMap="PostingResult">
+	
+		select * from posting
+		where posting_no IN (select posting_no
+		from hashtag
+		where tag = #{tag})
+		
+	</select>
+
+</mapper>
