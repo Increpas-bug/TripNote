@@ -1,5 +1,5 @@
-/* 회원 */
-DROP TABLE user;
+﻿/* 회원 */
+DROP TABLE users;
 /* 게시글 */
 DROP TABLE posting;
 /* 블로그 */
@@ -13,7 +13,7 @@ DROP TABLE following;
 /* 보관 */
 DROP TABLE keeping;
 /* 댓글 */
-DROP TABLE comment;
+DROP TABLE comments;
 /* 전체테마설정 */
 DROP TABLE theme;
 /* 블랙리스트 */
@@ -24,7 +24,9 @@ DROP TABLE hashtag;
 DROP TABLE bad;
 /* 관심사세분류 */
 DROP TABLE favoritedetail;
-   
+/* 주간좋아요수 */
+DROP TABLE weeklyhitcount;
+
 -- 시퀀스 생성
 DROP SEQUENCE user_seq;       -- 회원번호
 DROP SEQUENCE posting_seq;    -- 게시글번호
