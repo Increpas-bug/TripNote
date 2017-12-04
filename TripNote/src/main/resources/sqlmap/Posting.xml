@@ -27,9 +27,9 @@
 	<insert id="insertPosting" parameterType="Posting">
 		INSERT INTO
 		posting(posting_no, posting_title, posting_content,
-		posting_uploadpath, tag)
+		posting_uploadpath)
 		VALUES(posting_seq.nextval, #{posting_title},
-		#{posting_content}, #{posting_uploadpath}, #{tag})
+		#{posting_content}, #{posting_uploadpath})
 	</insert>
 
 	<insert id="insertHashtag" parameterType="String">

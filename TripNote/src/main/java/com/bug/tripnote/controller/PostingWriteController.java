@@ -59,7 +59,7 @@ public class PostingWriteController {
 				if (mfile != null && mfile.getSize() != 0) {
 					String filename = mfile.getOriginalFilename(); // 업로드 파일명
 					// 첨부이미지 폴더를 외부에 빼줌.			
-					String upath = "C:/images";
+					String upath = "C:/upload";
 					/*String upath = request.getServletContext().getRealPath("/upload");*/
 					
 					System.out.println(upath + "경로 설정 완료");
