@@ -15,6 +15,9 @@
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading text-uppercase">Start TripNote!</h2>
 				<h3 class="section-subheading text-muted">Login & Membership</h3>
+				
+				<!-- 로그인 후 페이지 (테스트용) -->
+				<a href="2_Main2.do"> test! </a>
 			</div>
 		</div>
 		<div class="row">
