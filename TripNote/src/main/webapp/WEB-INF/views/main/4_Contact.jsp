@@ -23,10 +23,11 @@
 				<c:if test="${not empty sessionScope.member}">
 			    	${sessionScope.member.user_nickname} 님 Hi!!
 					<a href="favoriteMainView.do">FavoriteMainView.do</a>
+					<br>
+					<!-- My -->
+					<a href="3_My_Main.do?user_no=${sessionScope.member.user_no}">3_My_Main.do</a>
 				</c:if>
 				<br/>
-				<!-- My -->
-				<a href="3_My_Main.do">3_My_Main.do</a>
 				<br/>
 				<!-- main2 -->
 				<a href="2_Main2.do">2_Main2.do</a>

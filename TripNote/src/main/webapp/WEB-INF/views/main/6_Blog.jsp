@@ -19,7 +19,7 @@
 				<!-- <a href="3_My_Main.do">test</a> -->
 				
 				<!-- 블로그 기능 테스트용 .do -->
-				<a href="3_My_Main.do?user_no=1">test</a>
+				<a href="3_My_Main.do?user_no=${sessionScope.member.user_no}">test</a>
 			
 			
 			</div>
