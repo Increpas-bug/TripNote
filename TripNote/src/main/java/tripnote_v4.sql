@@ -1,3 +1,78 @@
+ALTER TABLE posting
+	DROP
+		CONSTRAINT FK_blog_TO_posting
+		CASCADE;
+
+ALTER TABLE blog
+	DROP
+		CONSTRAINT FK_users_TO_blog
+		CASCADE;
+
+ALTER TABLE userfavorite
+	DROP
+		CONSTRAINT FK_users_TO_userfavorite
+		CASCADE;
+
+ALTER TABLE userfavorite
+	DROP
+		CONSTRAINT FK_favorite_TO_userfavorite
+		CASCADE;
+
+ALTER TABLE following
+	DROP
+		CONSTRAINT FK_users_TO_following
+		CASCADE;
+
+ALTER TABLE keeping
+	DROP
+		CONSTRAINT FK_users_TO_keeping
+		CASCADE;
+
+ALTER TABLE keeping
+	DROP
+		CONSTRAINT FK_posting_TO_keeping
+		CASCADE;
+
+ALTER TABLE comments
+	DROP
+		CONSTRAINT FK_posting_TO_comments
+		CASCADE;
+
+ALTER TABLE comments
+	DROP
+		CONSTRAINT FK_users_TO_comments
+		CASCADE;
+
+ALTER TABLE hashtag
+	DROP
+		CONSTRAINT FK_posting_TO_hashtag
+		CASCADE;
+
+ALTER TABLE bad
+	DROP
+		CONSTRAINT FK_posting_TO_bad
+		CASCADE;
+
+ALTER TABLE favoritedetail
+	DROP
+		CONSTRAINT FK_favorite_TO_favoritedetail
+		CASCADE;
+
+ALTER TABLE weeklyhitcount
+	DROP
+		CONSTRAINT FK_posting_TO_weeklyhitcount
+		CASCADE;
+
+ALTER TABLE likes
+	DROP
+		CONSTRAINT FK_users_TO_likes
+		CASCADE;
+
+ALTER TABLE likes
+	DROP
+		CONSTRAINT FK_posting_TO_likes
+		CASCADE;
+
 /* 회원 */
 CREATE TABLE users (
 	user_no NUMBER NOT NULL, /* 회원번호 */
