@@ -15,7 +15,7 @@
 	
 	<insert id="insertMember" parameterType="Map">
 		insert into users(user_no,user_email,user_nickname,user_pw,user_birth,user_adminyn)
-		values(#{user_no}, #{user_email}, #{user_nickname}, #{user_pw}, #{user_birth}, #{user_adminyn})
+		values(user_seq.NEXTVAL, #{user_email}, #{user_nickname}, #{user_pw}, #{user_birth}, #{user_adminyn})
 	</insert>
 	
 	<!-- 이메일/패스워드가 일치하는 회원이 있는지 검증 -->
