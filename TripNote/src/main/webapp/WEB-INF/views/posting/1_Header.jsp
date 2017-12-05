@@ -75,13 +75,17 @@
 			</div>
 		</div>
 		<!-- 검색 -->
-			<div style="margin-right: 3%; font-size:15px;">
-				<input class="form-control" id="search" type="search" placeholder="검색어를 입력해주세요. *" 
-				style="font-size:15px; padding: 0 20px 0 15px;">
-			</div>
-			<button class="btn btn-primary btn-xl text-uppercase" type="submit" style="margin-left:0.5px; padding: 10 10 10 10;">
+		
+		<div class="form-group" style=" margin-top: 1%;">
+		<form:form method="post" action="posting_Search.do">
+			<input class="form-control" id="search" type="search" name="tag" placeholder="검색어를 입력해주세요. *">
+		</div>
+		
+		<button class="btn btn-primary btn-xl text-uppercase" type="submit" 
+					style="margin-left: 1%;margin-bottom: 1%;padding: 6px 10px 6px 10px;">
 				Search
-				</button>
+		</button>
+		</form:form>
 	</nav>
 	</body>
 	</html>

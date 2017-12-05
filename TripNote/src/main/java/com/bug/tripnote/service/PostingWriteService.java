@@ -33,7 +33,7 @@ public class PostingWriteService {
 		String htag[] = tag.split("#");
 				
 		//2. 해시태그 갯수만큼  insert 해시태그 테이블
-		for (int i = 0; i < htag.length; i++) {
+		for (int i = 1; i <= htag.length; i++) { // 0으로 하면 null값도 추가됨. 
 			tag = htag[i];
 			dao.insertTag(tag);
 		}

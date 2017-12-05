@@ -15,6 +15,9 @@
 		<result property="posting_location" column="posting_location" />
 		<result property="user_no" column="user_no" />
 		<result property="blog_no" column="blog_no" />
+		<result property="blog_title" column="blog_title"/><!-- 블로그제목 -->
+		<result property="keepingYN" column="keepingYN"/><!-- 게시글보관여부 -->
+		<result property="likesYN" column="likesYN"/><!-- 게시글좋아요여부 -->
 
 	</resultMap>
 
@@ -38,12 +41,27 @@
 		VALUES(posting_seq.currval, #{tag})
 	</insert>
 	
-	<select id="selectSearchPosting" resultMap="PostingResult">
-	
-		select * from posting
-		where posting_no IN (select posting_no
-		from hashtag
-		where tag = #{tag})
+	<select id="selectSearchPosting" parameterType="map" resultMap="PostingResult">
+		select posting.*, blog.blog_title
+             , CASE (SELECT count(*) 
+             		 FROM keeping 
+             		 WHERE posting.POSTING_NO = keeping.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END keepingYN
+             , CASE (SELECT count(*) 
+             		 FROM likes 
+             		 WHERE posting.POSTING_NO = likes.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END likesYN
+		FROM posting, blog
+		WHERE posting.blog_no = blog.blog_no
+		AND posting_no IN (select posting_no
+                            from hashtag
+                            where tag = #{tag})
 		
 	</select>
 
