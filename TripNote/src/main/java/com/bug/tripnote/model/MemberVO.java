@@ -10,6 +10,7 @@ public class MemberVO {
 	private String user_pw;
 	private String user_birth;
 	private String user_adminyn;
+	private String user_blogyn;
 	
 	// MemberVOList 추가
 	private List<MemberVO> memberVOList;	// 게시글의 목록
@@ -71,11 +72,21 @@ public class MemberVO {
 		this.user_adminyn = user_adminyn;
 	}
 
+	public String getUser_blogyn() {
+		return user_blogyn;
+	}
+
+	public void setUser_blogyn(String user_blogyn) {
+		this.user_blogyn = user_blogyn;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [user_no=" + user_no + ", user_email=" + user_email + ", user_nickname=" + user_nickname
 				+ ", user_pw=" + user_pw + ", user_birth=" + user_birth + ", user_adminyn=" + user_adminyn
-				+ ", memberVOList=" + memberVOList + "]";
+				+ ", user_blogyn=" + user_blogyn + ", memberVOList=" + memberVOList + "]";
 	}
+
+	
 
 }

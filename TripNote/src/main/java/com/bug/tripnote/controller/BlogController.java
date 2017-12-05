@@ -1,5 +1,7 @@
 package com.bug.tripnote.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class BlogController {
 	private BlogService blogService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String myblog(@RequestParam("user_no") String user_no, Model model) {
+	public String myblog(@RequestParam("user_no") String user_no, HttpSession session, Model model) {
 		logger.info(user_no);
 		MemberVO mvo = null;
 		mvo = blogService.blogYNSelect(user_no);
@@ -39,6 +41,8 @@ public class BlogController {
 			// 없으면 블로그 생성
 			logger.info("블로그 없음"); 
 			blogService.blogYNInsert(user_no);
+			mvo.setUser_blogyn("Y");
+			session.setAttribute("member", mvo);
 		} else {
 			logger.info("블로그 있음");
 		}
