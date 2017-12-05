@@ -6,7 +6,6 @@
 <!-- 스프링  태그 라이브러리 사용 -->
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 <html lang="en" class="demo-2 no-js">
 	<head>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -40,52 +39,67 @@
 
 </head>
 
+<body>
 
-<body id="page-top">
-	<!-- Navigation (= 1_Header) -->
+<!-- Bootstrap core JavaScript -->
+	<script src="<c:url value="resource/vendor/jquery/jquery.min.js"/>">
+	</script>
 	
-					 
-	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #343a40;">
-		<div class="container">
-		
-			<a class="navbar-brand js-scroll-trigger" href="<%=request.getContextPath() %>" style="font-size:25px; font-family:'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
-				TripNote</a>
-	
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="fa fa-bars"></i>
-			</button>
+	<script src="<c:url value="resource/vendor/bootstrap/js/bootstrap.bundle.min.js"/>">	
+	</script>
 
-			<!-- menu -->
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">Login & Membership</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">Services</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#blog">Blog</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">About</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#team">Team Information</a></li>
+	<!-- Plugin JavaScript -->
+	<script src="<c:url value="resource/vendor/jquery-easing/jquery.easing.min.js"/>">
+	</script>
+
+	<!-- Contact form JavaScript -->
+	<script src="<c:url value="resource/js/jqBootstrapValidation.js"/>">	
+	</script>
+	
+	<script src="<c:url value="resource/js/contact_me.js"/>">	
+	</script>
+
+	<!-- Custom scripts for this template -->
+	<script src="<c:url value="resource/js/agency.min.js"/>">
+	</script>
+
+
+<!-- Footer -->
+<footer>
+<a class="navbar-brand js-scroll-trigger" href="#page-top" style="display:block; font-size:20px; font-weight:600; color:#ffc107; background-color:#fff; padding-left:80%;">
+				Top</a>
+	<br/>
+	<br/>	
+	<div class="container" >
+		<div class="row">
+			<div class="col-md-4" style="font-size:15px ; color: #fff; text-align: center;">
+				<span class="copyright">Copyright &copy; bug's tripNote 2017</span>
+			</div>
+			<!-- ------------------------------------------------------------------ -->
+			<div class="col-md-4" style="font-size:15px ; color: #fff; text-align: center;">
+				<ul class="list-inline social-buttons">
+					<li class="list-inline-item">
+						<a target="_blank" href="https://www.naver.com"> 
+							naver<i class="fa fa-naver"></i>
+						</a>
+					</li>
+					<!-- ------------------------------------------------------------------ -->
+					<li class="list-inline-item">
+						<a target="_blank" href="https://www.google.co.kr"> 
+							google<i class="fa fa-google"></i>
+						</a>
+					</li>
+					<!-- ------------------------------------------------------------------ -->
+					<li class="list-inline-item">
+						<a target="_blank" href="https://ko-kr.facebook.com/"> 
+							Facebook<i class="fa fa-Facebook"></i>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
-		<!-- 검색 -->
-		
-		<div class="form-group" style=" margin-top: 1%;">
-		<form:form method="post" action="posting_Search.do">
-			<input class="form-control" id="search" type="search" name="tag" placeholder="검색어를 입력해주세요. *">
-		</div>
-		
-		<button class="btn btn-primary btn-xl text-uppercase" type="submit" 
-					style="margin-left: 1%;margin-bottom: 1%;padding: 6px 10px 6px 10px;">
-				Search
-		</button>
-		</form:form>
-	</nav>
-	</body>
-	</html>
+	</div>
+	<br/>
+</footer>
+</body>
+</html>

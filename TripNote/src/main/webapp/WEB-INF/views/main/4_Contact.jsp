@@ -25,7 +25,7 @@
 					<a href="favoriteMainView.do">FavoriteMainView.do</a>
 					<br>
 					<!-- My -->
-					<a href="3_My_Main.do?user_no=${sessionScope.member.user_no}">3_My_Main.do</a>
+					<a href="2_My_Main.do?user_no=${sessionScope.member.user_no}">2_My_Main.do</a>
 				</c:if>
 				<br/>
 				<br/>

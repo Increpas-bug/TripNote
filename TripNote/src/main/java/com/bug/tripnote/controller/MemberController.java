@@ -32,7 +32,7 @@ public class MemberController {
 	@RequestMapping(value = "/joinForm.do", method = RequestMethod.GET)
 	public String joinForm() {
 		logger.info("회원등록 폼화면으로 갑시다");
-		return "membership/joinForm";
+		return "membership/2_Member_Main";
 	}
 
 	// . 회원 등록
@@ -63,7 +63,7 @@ public class MemberController {
 	@RequestMapping(value = "/loginForm.do")
 	public String loginForm() {
 		logger.info("회원등록 폼화면으로 갑시다");
-		return "loginForm";
+		return "membership/2_Member_Main";
 
 	}
 
@@ -82,7 +82,7 @@ public class MemberController {
 		resultVo = service.selectMember(vo);
 
 		if (resultVo == null) {
-			return "loginForm";
+			return "membership/2_Member_Main";
 		} else {
 			logger.info(resultVo.toString());
 			

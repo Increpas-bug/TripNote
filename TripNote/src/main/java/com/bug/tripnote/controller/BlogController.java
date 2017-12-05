@@ -24,7 +24,7 @@ import com.bug.tripnote.service.BlogService;
  */
 
 @Controller
-@RequestMapping("/3_My_Main.do")
+@RequestMapping("/2_My_Main.do")
 public class BlogController {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -50,6 +50,6 @@ public class BlogController {
 		BlogVO bvo = blogService.blogInfoSelect(user_no);
 		
 		model.addAttribute("blogVO", bvo);
-		return "myblog/3_My_Main";
+		return "myblog/2_My_Main";
 	}
 }
