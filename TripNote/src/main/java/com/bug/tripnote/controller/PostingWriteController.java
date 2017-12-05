@@ -32,7 +32,7 @@ public class PostingWriteController {
 		@RequestMapping(method = RequestMethod.GET)
 		public String form(Model model){
 			logger.info("등록폼으로 고");
-			return "posting/PostingWrite";
+			return "posting/2_Posting_write";
 		}
 	
 	
@@ -69,10 +69,10 @@ public class PostingWriteController {
 
 				}
 
-				return "posting/PostingWrite";  
+				return "posting/2_Posting_write";  
 				
 			} catch (Exception e) {
-				return "posting/PostingWrite";
+				return "posting/2_Posting_write";
 			}
 		}
 

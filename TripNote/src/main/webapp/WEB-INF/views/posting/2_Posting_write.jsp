@@ -17,7 +17,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trip-note 포스팅 등록</title>
+<title>포스팅 등록 </title>
 <meta name="description"
 	content="Hover Effects with animated SVG Shapes using Snap.svg" />
 <meta name="keywords"
@@ -48,29 +48,7 @@
 </head>
 
 <body>
-	<script type="text/javascript">
-		// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
-		function checkValue() {
-			if (!document.userInfo.user_email.value) {
-				alert("이메일을 입력하세요.");
-				return false;
-			}
 
-			if (!document.userInfo.user_pw.value) {
-				alert("비밀번호를 입력하세요.");
-				return false;
-			}
-			if (!document.userInfo.user_birth.value) {
-				alert("생일을 입력하세요.");
-				return false;
-			}
-			if (!document.userInfo.user_nickname.value) {
-				alert("이름을 입력하세요.");
-				return false;
-			}
-
-		}
-	</script>
 	<br />
 	<br />
 	<br />
@@ -78,23 +56,21 @@
 	<br />
 	<br />
 
-	<form:form action="join.do" method="post" commandName="member"
-		name="userinfo" onsubmit="return checkValue()">
+	<form:form action="posting_Write.do" method="post" commandName="Posting" enctype="multipart/form-data">
 
 		<section id="contact">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-left">
-						<h3 class="section-heading text-uppercase">Membership</h3>
+						<h3 class="section-heading text-uppercase"> 게시글 등록 </h3>
 						<br> 
 						<br>
 						<table style="font-size: 18px; font-weight: 500;">
 							<tr>
-								<td>Email</td>
+								<td>제목</td>
 								<td><input class="form-control" style="width: 300px;"
-									name="user_email" type="email" placeholder="email *"></td>
-								<td><input class="btn btn-primary " type="submit"
-									value="중복확인" style="padding: 5 5 5 5;"></td>
+									name="posting_title" type="text" placeholder=""></td>
+
 							</tr>
 							<tr>
 							<td>
@@ -102,9 +78,9 @@
 							</td>
 							</tr>
 							<tr>
-								<td>Password</td>
-								<td><input class="form-control" style="width: 300px;"
-									type="password" name="user_pw" placeholder="password *">
+								<td>내용</td>
+								<td>
+									<textarea cols="70" rows="15" name="posting_content"></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -113,9 +89,8 @@
 							</td>
 							</tr>
 							<tr>
-								<td>Name</td>
-								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_nickname" placeholder="name *">
+								<td>첨부파일</td>
+								<td><input input class="form-control" type="file" name="mfile">
 								</td>
 							</tr>
 							<tr>
@@ -124,9 +99,9 @@
 							</td>
 							</tr>
 							<tr>
-								<td>Birthday</td>
+								<td>태그</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_birth" size="6" placeholder="YYMMDD *">
+									type="text" name="tag">
 								</td>
 							</tr>
 							<tr>
@@ -134,15 +109,7 @@
 							&nbsp;
 							</td>
 							</tr>
-							<tr>
-								<td>Admin Number</td>
-								<td><select lass="form-control" style="width: 100px;"
-									name="user_adminyn">
-										<option value="N">일반</option>
-										<option value="Y">관리자</option>
-								</select>
-								</td>
-							</tr>
+
                       		<tr>
 							<td>
 							&nbsp;
@@ -154,7 +121,7 @@
 							<td>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 								<button class="btn btn-primary " type="submit"
-									    style="padding: 5 10 5 10; width: 100px; ">가입하기</button>
+									    style="padding: 5 10 5 10; width: 100px; "> 등록 </button>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<button class="btn btn-primary " type="reset"
 									    style="padding: 5 10 5 10; width: 100px;">다시작성</button>
