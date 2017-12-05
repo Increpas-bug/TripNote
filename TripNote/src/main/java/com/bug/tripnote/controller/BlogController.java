@@ -1,5 +1,7 @@
 package com.bug.tripnote.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bug.tripnote.model.BlogVO;
 import com.bug.tripnote.model.MemberVO;
-
+import com.bug.tripnote.model.PostingVO;
 import com.bug.tripnote.service.BlogService;
+
+import sun.print.resources.serviceui;
 
 
 /**
@@ -34,7 +38,13 @@ public class BlogController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String myblog(@RequestParam("user_no") String user_no, HttpSession session, Model model) {
 		logger.info(user_no);
-		MemberVO mvo = null;
+		MemberVO mvo = (MemberVO) session.getAttribute("member");
+	
+		String my_user_no = mvo.getUser_no();
+		logger.info(my_user_no + "!!!!!!!!!!!!!!!");
+		// 게시글 리스트
+		List<PostingVO> postingList = blogService.selectMyPosting(my_user_no);
+		
 		mvo = blogService.blogYNSelect(user_no);
 		
 		if(mvo == null) {
@@ -46,10 +56,14 @@ public class BlogController {
 		} else {
 			logger.info("블로그 있음");
 		}
-
+		
 		BlogVO bvo = blogService.blogInfoSelect(user_no);
 		
+		
+		
 		model.addAttribute("blogVO", bvo);
-		return "myblog/2_My_Main";
+		model.addAttribute("postingList", postingList);
+		
+		return "myblog/3_My_Main";
 	}
 }

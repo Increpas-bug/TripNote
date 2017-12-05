@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bug.tripnote.model.BlogVO;
 import com.bug.tripnote.model.MemberVO;
+import com.bug.tripnote.model.PostingVO;
 
 /*@Controller("blogDAO")*/
 @Repository
@@ -69,9 +70,19 @@ public class BlogDAO {
 	public void titlePhotoUpdate(BlogVO bvo) {
 		sqlSessionTemplate.update("blog_ns.titlePhotoUpdate", bvo);
 	}
-	// 블로글 제목/소개글 수정
+	// 블로글 제목 수정
 	public void blogTitleUpdate(BlogVO bvo) {
 		sqlSessionTemplate.selectOne("blog_ns.blogTitleUpdate", bvo);
+	}
+	// 블로그 소개글 수정
+	public void blogDetailUpdate(BlogVO bvo) {
+		sqlSessionTemplate.selectOne("blog_ns.blogDetailUpdate", bvo);
+	}
+		
+	// 게시판 리스트
+	public List<PostingVO> selectMyPosting(String my_user_no){
+		List<PostingVO> postingList = sqlSessionTemplate.selectList("blog_ns.selectMyPosting", my_user_no);
+		return postingList;
 	}
 }
 

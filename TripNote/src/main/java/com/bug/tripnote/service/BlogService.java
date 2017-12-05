@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bug.tripnote.dao.BlogDAO;
+import com.bug.tripnote.dao.FavoriteMainViewDAO;
 import com.bug.tripnote.model.BlogVO;
 import com.bug.tripnote.model.MemberVO;
+import com.bug.tripnote.model.PostingVO;
 
 
 @Service
@@ -20,6 +22,8 @@ public class BlogService {
 	
 	@Autowired
 	private BlogDAO blogDAO;
+	@Autowired
+	private FavoriteMainViewDAO dao;
 	
 	//사용자 블로그 여부
 	@Transactional
@@ -36,12 +40,6 @@ public class BlogService {
 		// 블로그 YN 회원테이블에 update
 		blogDAO.blogYNUpdate(user_no);
 	}
-	//사용자 테이블에 블로그 있다고
-	/*@Transactional
-	public int blogYNUpdate(MemberVO mvo) {
-		return blogDAO.blogYNUpdate(mvo);
-	}*/
-	
 	
 	// 블로그 정보 조회
 	@Transactional
@@ -72,9 +70,31 @@ public class BlogService {
 	public void titlePhotoUpdate(BlogVO bvo) {
 		blogDAO.titlePhotoUpdate(bvo);
 	}
-	// 블로그 제목/소개글 수정
+	// 블로그 제목 수정
 	@Transactional
 	public void blogTitleUpdate(BlogVO bvo) {
 		 blogDAO.blogTitleUpdate(bvo);
 	}
+	// 블로그 소개글 수정
+	@Transactional
+	public void blogDetailUpdate(BlogVO bvo) {
+		blogDAO.blogDetailUpdate(bvo);
+	}
+	
+	// 포스팅 불러오기
+	@Transactional
+	public List<PostingVO> selectMyPosting(String my_user_no) {
+		//게시판 리스트
+		List<PostingVO> postingList = blogDAO.selectMyPosting(my_user_no);
+		
+		// 태그/댓글 리스트
+		for (PostingVO vo : postingList) {
+			int posting_no = vo.getPosting_no();
+			vo.setHashtag(dao.selectAllHashtags(posting_no)); // 태그
+			vo.setComments(dao.selectAllComments(posting_no)); // 댓글
+		}
+		
+		return postingList;
+	}
+	
 }

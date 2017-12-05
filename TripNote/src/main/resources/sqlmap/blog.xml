@@ -3,7 +3,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="blog_ns">
-
+	
+	<!-- 블로그 -->
 	<resultMap type="Blog" id="BlogResult">
 		<result property="blog_no" column="blog_no"/>
 		<result property="user_no" column="user_no"/>
@@ -16,6 +17,26 @@
 		<result property="blog_titlecolor" column="blog_titlecolor"/>
 		<result property="user_blogyn" column="user_blogyn"/>
 	</resultMap>
+		
+	<!-- 게시글 ResultMap -->
+	<resultMap type="Posting" id="PostingResultSet">
+		<id property="posting_no" column="posting_no" />
+		<result property="posting_title" column="posting_title" />
+		<result property="posting_content" column="posting_content" />
+		<result property="posting_date" column="posting_date" />
+		<result property="posting_uploadpath" column="posting_uploadpath" />
+		<result property="posting_hitcount" column="posting_hitcount" />
+		<result property="posting_weekly_hitcount" column="posting_weekly_hitcount" />
+		<result property="posting_likecount" column="posting_likecount" />
+		<result property="posting_badcount" column="posting_badcount" />
+		<result property="posting_location" column="posting_location" />
+		<result property="user_no" column="user_no" />
+		<result property="blog_no" column="blog_no" />
+		<result property="blog_title" column="blog_title"/><!-- 블로그제목 -->
+		<result property="keepingYN" column="keepingYN"/><!-- 게시글보관여부 -->
+		<result property="likesYN" column="likesYN"/><!-- 게시글좋아요여부 -->
+	</resultMap>
+	
 	
 	<!-- 1. 사용자가 블로그가 있는지 판단 쿼리 -->
 	<select id="blogYNSelect" parameterType="string" resultType="Member">
@@ -49,11 +70,39 @@
 		update blog set
 		blog_title_photo=#{blog_title_photo} where user_no=#{user_no}	
 	</update>
-	
+		
 	<!-- 블로글 제목 -->
 	<update id="blogTitleUpdate" parameterType="Blog">
 		update blog set
-		blog_title=#{blog_title}, blog_detail=#{blog_detail} where user_no=#{user_no}
+		blog_title=#{blog_title} where user_no=#{user_no}
 	</update>
-	<!-- 블로그 소개글 -->
+	<update id="blogDetailUpdate" parameterType="Blog">
+		update blog set
+		blog_detail=#{blog_detail} where user_no=#{user_no}
+	</update>
+	
+	
+	<select id="selectMyPosting" resultMap="PostingResultSet">
+	<![CDATA[
+		SELECT posting.*, blog.blog_title
+             , CASE (SELECT count(*) 
+             		 FROM keeping 
+             		 WHERE posting.POSTING_NO = keeping.POSTING_NO 
+             		 AND user_no = #{my_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END keepingYN
+             , CASE (SELECT count(*) 
+             		 FROM likes 
+             		 WHERE posting.POSTING_NO = likes.POSTING_NO 
+             		 AND user_no = #{my_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END likesYN
+		FROM posting, blog
+		WHERE posting.blog_no = blog.blog_no
+		AND posting.user_no = #{my_user_no}
+		ORDER BY posting_no DESC
+	]]>
+	</select>
 </mapper>
