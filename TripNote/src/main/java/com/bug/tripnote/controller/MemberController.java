@@ -51,6 +51,34 @@ public class MemberController {
 			return "join.do";
 		}
 	}
+	
+	@RequestMapping(value = "/updateMemberForm.do", method = RequestMethod.GET)
+	public String get_updateMemberForm(MemberVO vo) {				
+		logger.info("회원정보수정 폼화면으로 갑시다");
+		return "membership/updateMemberForm";
+	}
+
+	
+	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
+	public String updateMemberForm(@ModelAttribute("member") MemberVO vo, HttpSession session) {
+		service.updateMember(vo);		
+		logger.info(vo.toString());
+		
+		MemberVO resultVo = null;
+		resultVo = service.selectMember(vo);
+
+		if (resultVo == null) {
+			return "membership/updateMemberForm";
+		} else {
+			logger.info(resultVo.toString());
+			
+			session.setAttribute("member", resultVo);
+			//String user_no = (String)session.getAttribute("user_no");
+			
+			return "index";
+		}
+	}
+
 
 	/*
 	 * // 회원 정보 수정 처리

@@ -38,6 +38,14 @@ public class MemberService {
 	}
 	
 
+	public void updateMember(MemberVO vo) {
+		System.out.println("MemberService.java : updateMember : 들어옴");
+		dao.updateMember(vo);
+		
+	}
+	
+	
+
 	
 }
 	
