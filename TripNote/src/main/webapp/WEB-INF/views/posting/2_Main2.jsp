@@ -12,7 +12,7 @@
 <!-- Main -->
 <html lang="en" class="demo-2 no-js">
 <head>
-<!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
