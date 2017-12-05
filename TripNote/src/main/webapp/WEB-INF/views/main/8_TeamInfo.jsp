@@ -27,8 +27,8 @@
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/001.jpg"/>" alt="">
 						<h4>Ko Eunbit</h4>
 						<p class="text-muted">
-						Team Leader<br/>
-						
+						Team leader<br/>
+						View.
 						</p>
 					</div>
 				</div>
@@ -40,8 +40,8 @@
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/002.jpg"/>" alt="">
 						<h4>Kim Eunjung</h4>
 						<p class="text-muted">
-						assistant manager<br/>
-						
+						Assistant manager<br/>
+						Posting.
 						</p>
 					</div>
 				</div>
@@ -51,20 +51,24 @@
 				<div class="col-sm-4">
 					<div class="team-member">
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/003.jpg"/>" alt="">
-						<h4>Kim Ddunddun</h4>
+						<h4>Kim Joongyeob</h4>
 						<p class="text-muted">
-						team member<br/>
+						Team member<br/>
+						Posting.
 						</p>
 					</div>
 				</div>
 				
 				<!-- ------------------------------------------------------------------ -->
-				<!-- 심재혐 -->
+				<!-- 심재혐-->
 				<div class="col-sm-4">
 					<div class="team-member">
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/004.jpg"/>" alt="">
-						<h4>Sim Jeahyeom</h4>
-						<p class="text-muted">Lead Developer</p>
+						<h4>Sim Jeahyeon</h4>
+						<p class="text-muted">
+						Team member<br/>
+						Posing.
+						</zp>
 					</div>
 				</div>
 				
@@ -74,7 +78,10 @@
 					<div class="team-member">
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/005.png"/>" alt="">
 						<h4>Lee Jinsoo</h4>
-						<p class="text-muted">Lead Developer</p>
+						<p class="text-muted">
+						Team member<br/>
+						MyBlog.
+						</p>
 					</div>
 				</div>
 				
@@ -84,7 +91,10 @@
 					<div class="team-member">
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/006.png"/>" alt="">
 						<h4>Na Gunwoo</h4>
-						<p class="text-muted">Lead Developer</p>
+						<p class="text-muted">
+						Team member<br/>
+						Member.
+						</p>
 					</div>
 				</div>
 				
@@ -94,7 +104,10 @@
 					<div class="team-member">
 						<img class="mx-auto rounded-circle" src="<c:url value="resource/img/team/007.jpg"/>" alt="">
 						<h4>Kang Jongho</h4>
-						<p class="text-muted">Lead Developer</p>
+						<p class="text-muted">
+						Team member<br/>
+						admin.
+						</p>
 					</div>
 				</div>
 			</div>

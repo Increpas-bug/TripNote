@@ -14,12 +14,6 @@
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading text-uppercase">Blog
 				<h3 class="section-subheading text-muted" > Preview </h3>
-				
-				<!-- 로그인 후 페이지이기때문에 로그인이 완성이 안된 관계로 테스트페이지입니다. -->
-				<!-- <a href="3_My_Main.do">test</a> -->
-				
-				<!-- 블로그 기능 테스트용 .do -->
-				<a href="3_My_Main.do?user_no=${sessionScope.member.user_no}">test</a>
 			
 			
 			</div>

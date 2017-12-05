@@ -82,7 +82,7 @@
 							</div>
 							<div class="timeline-panel">
 								<div class="timeline-heading">
-									<h4>2017-12-04</h4>
+									<h4>2017-12-05</h4>
 									<h4 class="subheading">Finish</h4>
 								</div>
 								<div class="timeline-body">

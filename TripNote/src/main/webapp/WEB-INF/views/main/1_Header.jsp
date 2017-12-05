@@ -12,6 +12,7 @@
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger" href="<%=request.getContextPath() %>">
 				TripNote</a>
+				
 			<!--  -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -44,7 +45,7 @@
 		</div>
 		
 		<button class="btn btn-primary btn-xl text-uppercase" type="submit" 
-					style="margin-left: 1%;margin-bottom: 1%;padding: 6px 10px 6px 10px;">
+					style="margin-left: 0.5%;margin-bottom: 1%;padding: 6px 10px 6px 10px;">
 				Search
 		</button>
 		</form:form>
