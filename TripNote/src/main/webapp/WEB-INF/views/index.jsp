@@ -51,7 +51,5 @@
 	<%@include file="main/7_About.jsp"%>
 	<%@include file="main/8_TeamInfo.jsp"%>
 	<%@include file="main/9_Footer.jsp"%>
-	<%@include file="main/9_Footer.jsp"%>
 
-<!-- <a href="admin/admin_Main.jsp">관리자</a> -->
 

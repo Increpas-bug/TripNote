@@ -44,14 +44,13 @@
 
 
 <body id="page-top">
-	<!-- Navigation (= 1_Header) -->
-	
-					 
+	<!-- Navigation (= 1_Header) --> 
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #343a40;">
 		<div class="container">
-		
-			<a class="navbar-brand js-scroll-trigger" href="http://localhost:8080/tripnote/" style="font-size:25px; font-family:'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
-				TripNote</a>
+			<a class="navbar-brand js-scroll-trigger" 
+			   href="<%=request.getContextPath() %>" 
+			   style="font-size:25px; font-family:'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
+			TripNote</a>
 
 			<!--  -->		
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -62,26 +61,27 @@
 			</button>
 
 			<!-- manu -->
-			<div class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse navbar-collapse" id="navbarResponsive" style="font-size:15px;">
 				<ul class="navbar-nav text-uppercase ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">Login & Membership</a></li>
+						href="#blog">Blog&nbsp;</a></li>
+					
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">Services</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#blog">Blog</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">About</a></li>
+						href="#about">About&nbsp;</a></li>
+					
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#team">Team Information</a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- 검색 -->
-		<div class="form-group" style="margin-right: 5%; margin-top: 1%;">
-			<input class="form-control" id="search" type="search"
-				placeholder="검색어를 입력해주세요. *">
-		</div>
+			<div style="margin-right: 3%; font-size:15px;">
+				<input class="form-control" id="search" type="search" placeholder="검색어를 입력해주세요. *" 
+				style="font-size:15px; padding: 0 20px 0 15px;">
+			</div>
+			<button class="btn btn-primary btn-xl text-uppercase" type="submit" style="margin-left:0.5px; padding: 10 10 10 10;">
+				Search
+				</button>
 	</nav>
 	</body>
 	</html>

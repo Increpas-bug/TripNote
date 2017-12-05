@@ -8,6 +8,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <%@include file="1_admin_Header.jsp"%>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 <!-- <h1>관리자 페이지</h1> -->

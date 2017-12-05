@@ -15,7 +15,7 @@
 	<!-- Navigation (= 1_Header) -->
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">
+			<a class="navbar-brand js-scroll-trigger" href="<%=request.getContextPath() %>">
 				TripNote</a>
 			<!--  -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -42,8 +42,11 @@
 			</div>
 		</div>
 		<!-- 검색 -->
-		<div class="form-group" style="margin-right: 5%; margin-top: 1%;">
-			<input class="form-control" id="search" type="search"
-				placeholder="검색어를 입력해주세요. *">
-		</div>
+			<div style="margin-right: 3%; font-size:15px;">
+				<input class="form-control" id="search" type="search" placeholder="검색어를 입력해주세요. *" 
+				style="padding: 0% 30% 0% 10%;">
+			</div>
+			<button class="btn btn-primary btn-xl text-uppercase" type="submit" style="margin-left:3%; padding: 10 10 10 10;">
+				Search
+				</button>
 	</nav>

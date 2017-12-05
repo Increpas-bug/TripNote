@@ -10,6 +10,12 @@
 		location.href = "/tripnote/admin_banMember.do?user_email=" + user_email;
 	}
 </script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <h1>회원 리스트</h1>
 <a href="admin_Main.do">메인페이지</a>
@@ -38,8 +44,8 @@
 			<td>${memberVO.user_birth}</td>
 			<td>${memberVO.user_adminyn}</td>
 			<td>
-				<button onclick="delft('${memberVO.user_email}')">회원 삭제, 블랙리스트
-					등록</button>
+				<button onclick="delft('${memberVO.user_email}')">회원 삭제,
+					블랙리스트 등록</button>
 			</td>
 		</tr>
 	</c:forEach>

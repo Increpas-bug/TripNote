@@ -14,6 +14,12 @@
 		location.href = "/tripnote/admin_banMember.do?user_email=" + user_email;
 	}
 </script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 <h1>블랙리스트</h1>
