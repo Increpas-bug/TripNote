@@ -58,7 +58,7 @@ public class PostingSearchController {
 		
 		System.out.println("서비스로 넘어갔는가띠용?");
 		
-		return "posting/favoriteMainView";
+		return "posting/2_Main2";
 	}
 
 }
