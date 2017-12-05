@@ -88,7 +88,7 @@
 						<h3 class="section-heading text-uppercase">Membership</h3>
 						<br> 
 						<br>
-						<table style="font-size: 18px; font-weight: inherit;">
+						<table style="font-size: 18px; font-weight: 500;">
 							<tr>
 								<td>Email</td>
 								<td><input class="form-control" style="width: 300px;"
@@ -150,12 +150,14 @@
 							</tr>
 							<tr>
 							<td>
-								<input class="btn btn-primary " type="submit"
-									value="가입하기" style="padding: 5 10 5 10; margin-left: 130%;">
 							</td>
 							<td>
-								<input class="btn btn-primary " type="reset"
-									value="다시작성" style="padding: 5 10 5 10; margin-left: 60%;">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn btn-primary " type="submit"
+									    style="padding: 5 10 5 10; width: 100px; ">가입하기</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn btn-primary " type="reset"
+									    style="padding: 5 10 5 10; width: 100px;">다시작성</button>
 							</td>
 							</tr>
 						</table>
