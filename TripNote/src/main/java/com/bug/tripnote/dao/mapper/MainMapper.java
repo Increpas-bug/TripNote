@@ -14,4 +14,5 @@ public interface MainMapper {
 	public int insertMember(MemberVO vo);
 	public MemberVO selectMember(MemberVO vo);
 	public int loginCheck(MemberVO vo);
+	public void updateMember(MemberVO vo);
 }

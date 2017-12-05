@@ -45,6 +45,13 @@ public class MemberDAO {
 		return resultVo;
 	}
 	
+
+	public void updateMember(MemberVO vo) {
+		System.out.println("MemberDAO.java : updateMember : 입장");
+	    mapper.updateMember(vo);
+	}
+	
+	
 	
 	/*@Autowired
 	private static SqlSessionTemplate sqlSessionTemplate;

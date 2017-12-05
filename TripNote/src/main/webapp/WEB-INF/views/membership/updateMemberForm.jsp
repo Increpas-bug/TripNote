@@ -2,12 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!-- 스프링  태그 라이브러리 사용 -->
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-<%@ include file="1_Header.jsp"%>
 
 <!-- Main -->
 <html lang="en" class="demo-2 no-js">
@@ -17,7 +15,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trip-note 포스팅 등록</title>
+<title>회원정보수정</title>
 <meta name="description"
 	content="Hover Effects with animated SVG Shapes using Snap.svg" />
 <meta name="keywords"
@@ -48,29 +46,6 @@
 </head>
 
 <body>
-	<script type="text/javascript">
-		// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
-		function checkValue() {
-			if (!document.userInfo.user_email.value) {
-				alert("이메일을 입력하세요.");
-				return false;
-			}
-
-			if (!document.userInfo.user_pw.value) {
-				alert("비밀번호를 입력하세요.");
-				return false;
-			}
-			if (!document.userInfo.user_birth.value) {
-				alert("생일을 입력하세요.");
-				return false;
-			}
-			if (!document.userInfo.user_nickname.value) {
-				alert("이름을 입력하세요.");
-				return false;
-			}
-
-		}
-	</script>
 	<br />
 	<br />
 	<br />
@@ -78,7 +53,7 @@
 	<br />
 	<br />
 
-	<form:form action="join.do" method="post" commandName="member"
+	<form:form action="updateMember.do" method="post" commandName="member"
 		name="userinfo" onsubmit="return checkValue()">
 
 		<section id="contact">
@@ -89,12 +64,20 @@
 						<br> 
 						<br>
 						<table style="font-size: 18px; font-weight: 500;">
+						
+							<tr>
+								<td>No</td>
+								<td><input class="form-control" style="width: 300px;"
+									type="text" name="user_no" value="${member.user_no}"readonly >
+								</td>
+							</tr>
+							<tr>
+							<td>
 							<tr>
 								<td>Email</td>
 								<td><input class="form-control" style="width: 300px;"
-									name="user_email" type="email" placeholder="email *"></td>
-								<td><input class="btn btn-primary " type="submit"
-									value="중복확인" style="padding: 5 5 5 5;"></td>
+									name="user_email" type="text"value="${member.user_email}" placeholder="email *"></td>
+					
 							</tr>
 							<tr>
 							<td>
@@ -104,7 +87,7 @@
 							<tr>
 								<td>Password</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="password" name="user_pw" placeholder="password *">
+									type="password" name="user_pw" value="${member.user_pw}" placeholder="password *">
 								</td>
 							</tr>
 							<tr>
@@ -115,7 +98,7 @@
 							<tr>
 								<td>Name</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_nickname" placeholder="name *">
+									type="text" name="user_nickname"  value="${member.user_nickname}" readonly placeholder="name *">
 								</td>
 							</tr>
 							<tr>
@@ -126,7 +109,7 @@
 							<tr>
 								<td>Birthday</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_birth" size="6" placeholder="YYMMDD *">
+									type="text" name="user_birth" size="6" value="${member.user_birth}" placeholder="YYMMDD *">
 								</td>
 							</tr>
 							<tr>
@@ -136,11 +119,8 @@
 							</tr>
 							<tr>
 								<td>Admin Number</td>
-								<td><select lass="form-control" style="width: 100px;"
-									name="user_adminyn">
-										<option value="N">일반</option>
-										<option value="Y">관리자</option>
-								</select>
+								<td><input class="form-control" style="width: 300px;"
+									type="text" name="user_adminyn" value="${member.user_adminyn}" readonly >
 								</td>
 							</tr>
                       		<tr>
@@ -154,7 +134,7 @@
 							<td>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 								<button class="btn btn-primary " type="submit"
-									    style="padding: 5 10 5 10; width: 100px; ">가입하기</button>
+									    style="padding: 5 10 5 10; width: 100px; ">수정하기</button>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<button class="btn btn-primary " type="reset"
 									    style="padding: 5 10 5 10; width: 100px;">다시작성</button>
