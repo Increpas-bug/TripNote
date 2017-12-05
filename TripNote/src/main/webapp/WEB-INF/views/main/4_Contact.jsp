@@ -26,6 +26,8 @@
 					<br>
 					<!-- My -->
 					<a href="2_My_Main.do?user_no=${sessionScope.member.user_no}">2_My_Main.do</a>
+					<a href="updateMemberForm.do?user_no=${sessionScope.member.user_no}">회원정보수정</a>
+				
 				</c:if>
 				<br/>
 				<br/>
@@ -45,7 +47,7 @@
 							
 							<!-- 이메일 주소=아이디 -->
 							<div class="form-group">
-								<input class="form-control"  name="user_email" type="text" placeholder="이메일(아이디) *" required
+								<input class="form-control"  name="user_email" type="email" placeholder="이메일(아이디) *" required
 									   data-validation-required-message="이메일 주소를 입력해 주세요.(ID가 이메일주소입니다.)">
 								<p class="help-block text-danger"></p>
 							</div>

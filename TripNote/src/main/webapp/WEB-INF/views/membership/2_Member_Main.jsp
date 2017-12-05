@@ -92,7 +92,7 @@
 							<tr>
 								<td>Email</td>
 								<td><input class="form-control" style="width: 300px;"
-									name="user_email" type="text" placeholder="email *"></td>
+									name="user_email" type="email" placeholder="email *"></td>
 								<td><input class="btn btn-primary " type="submit"
 									value="중복확인" style="padding: 5 5 5 5;"></td>
 							</tr>
