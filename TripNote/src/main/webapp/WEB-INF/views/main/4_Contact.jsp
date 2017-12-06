@@ -35,7 +35,7 @@
 				<br/>
 				<br/>
 				<!-- main2 -->
-				<a href="2_Main2.do">2_Main2.do</a>
+				<a href="2_Main2.do?user_no=207">2_Main2.do</a>
 				<br/>		
 			</div>
 		</div>

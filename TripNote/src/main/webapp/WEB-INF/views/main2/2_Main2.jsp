@@ -21,6 +21,10 @@
 		<meta name="keywords" content="animated svg, hover effect, grid, svg shape html, " />
 		<meta name="author" content="Codrops" /> 
 		
+		<!-- 아래메뉴버튼용CSS -->
+		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css3/demo.css'/>" />
+		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css3/component.css'/>" /> 
+		<!-- 메인Top8용CSS? -->		
 		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/normalize.css'/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/demo.css'/>" />
 		<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/component.css'/>" />
@@ -36,189 +40,116 @@
 		<![endif]-->
 		
 <style type="text/css">
-/* ul li {
-opacity: 0;
-} */
 
-img {
-width: 233px;
-height: 417px;
-}
+img.top8 {
+	width: 233px;
+	height: 417px;
+	}
 </style>
 
 </head>
 	
-<!-- <script>
-	$(document).ready(function(){
-    	$("button").hide(0, function(){
-            $("button.viewB").show();
-        });
-    	
-        $("li").each(function(){
-           
-            $("#"+$(this).text()).show();
-        });         
-       
-	});
-</script> -->
-
-<body>
+<body class="demo-3">
 <br/>
 <br/>
+<div style="width: 100%; height: 135px; " >
+</div>
 
-	<div class="container">
-
-		<!-- Top Navigation -->
-		<!-- <div class="codrops-top clearfix">
-				<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/SVGDrawingAnimation/"><span>Previous Demo</span></a>
-				<span class="right"><a href="http://cargocollective.com/isaac317">Artwork by Isaac Montemayor</a><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=18145"><span>Back to the Codrops Article</span></a></span>
-			</div> -->
-		<header class="codrops-header">
-			<!-- <h1>Shape Hover Effect with SVG<span>Recreating the effect as seen on <a href="http://christmasexperiments.com/">The Christmas Experiments</a></span></h1> -->
-			<nav class="codrops-demos">
-				<!-- 임시방편으로 넣어놓음 -->
-				<%-- <a class="current-demo" href="afterMain.do?test=${slist}"
-					style="float: left; display: block;">TripNote Top8</a> --%>
-				<!-- <div class="container2"
-					style="float: left; height: 90px; width: 100%">
-					<button id='koreab' class='btn'>Korea</button>
-					<button id='japanb' class='btn btn-primary'>Japan</button>
-					<button id='englandb' class='btn btn-secondary'>England</button>
-					<button type="button" class="btn">Basic</button>
-					<button type="button" class="btn btn-primary">Primary</button>
-					<button type="button" class="btn btn-secondary">Secondary</button>
-					<button type="button" class="btn btn-success">Success</button>
-					<button type="button" class="btn btn-info">Info</button>
-					<button type="button" class="btn btn-warning">Warning</button>
-					<button type="button" class="btn btn-danger">Danger</button>
-					<button type="button" class="btn btn-dark">Dark</button>
-					<button type="button" class="btn btn-light">Light</button>
-					<button type="button" class="btn btn-link">Link</button>
-				</div> -->
-			</nav>
-<%-- 
-			이미지 경로!!! : ${topMainVO.imageUrl}
-			<c:set var="mainList" value="${TopMainList}"></c:set>
-			one : ${mainList["0"].title} two : ${TopMainList["1"].title}
- --%>
- 
- 			<c:set var="mainList" value="${TopMainList}"></c:set>
-		</header>
+<div class="page" id="page-home" style="overflow: hidden; height: auto;"  >
 		
-		
-		<section id="grid" class="grid clearfix">
-			<a href="#" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/${mainList["0"].imageUrl}'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>${mainList["0"].title}</h2>
-						<p>${mainList["0"].content}</p>
-						<button class="viewB">TOP1</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/${mainList["1"].imageUrl}'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>${mainList["1"].title}</h2>
-						<p>${mainList["1"].content}</p>
-						<button class="viewB">TOP2</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/6.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Languid</h2>
-						<p>Beetroot water spinach okra water chestnut.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/8.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Serene</h2>
-						<p>Water spinach arugula pea tatsoi.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/1.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Nebulous</h2>
-						<p>Pea horseradish azuki bean lettuce.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/3.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Iridescent</h2>
-						<p>A grape silver beet watercress potato.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/5.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Resonant</h2>
-						<p>Chickweed okra pea winter purslane.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a> <a href="#"
-				data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-				<figure>
-					<img src="<c:url value ='resource/img/main2/7.png'/>" />
-					<svg viewBox="0 0 180 320" preserveAspectRatio="none">
-						<path
-							d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z" /></svg>
-					<figcaption>
-						<h2>Zenith</h2>
-						<p>Salsify taro catsear garlic gram.</p>
-						<button class="viewB">View</button>
-					</figcaption>
-				</figure>
-			</a>
-		</section>
-		<section class="related">
-			<!-- <p>If you enjoyed these effects you might also like:</p>
-				<div><a href="http://tympanus.net/Tutorials/CaptionHoverEffects/"><h4>Caption Hover Effects</h4></a></div>
-				<div><a href="http://tympanus.net/Development/AnimatedSVGIcons/"><h4>Animated SVG Icons</h4></a></div> -->
-		</section>
-	</div>
-	<!-- /container -->
+			<section id="grid" class="grid clearfix">
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["0"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["0"].posting_uploadpath}'/>">
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["0"].posting_title}</h2>
+							<p>${top8List["0"].posting_content}</p>
+							<button class="viewB">TOP1</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["1"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["1"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["1"].posting_title}</h2>
+							<p>${top8List["1"].posting_content}</p>
+							<button class="viewB">TOP2</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["2"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["2"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["2"].posting_title}</h2>
+							<p>${top8List["2"].posting_content}</p>
+							<button class="viewB">TOP3</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["3"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["3"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["3"].posting_title}</h2>
+							<p>${top8List["3"].posting_content}</p>
+							<button class="viewB">TOP4</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["4"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["4"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["4"].posting_title}</h2>
+							<p>${top8List["4"].posting_content}</p>
+							<button class="viewB">TOP5</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["5"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["5"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["5"].posting_title}</h2>
+							<p>${top8List["5"].posting_content}</p>
+							<button class="viewB">TOP6</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["6"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["6"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["6"].posting_title}</h2>
+							<p>${top8List["6"].posting_content}</p>
+							<button class="viewB">TOP7</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["7"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+					<figure>
+						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["7"].posting_uploadpath}'/>" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+						<figcaption>
+							<h2>${top8List["7"].posting_title}</h2>
+							<p>${top8List["7"].posting_content}</p>
+							<button class="viewB">TOP8</button>
+						</figcaption>
+					</figure>
+				</a>
+			</section>
+			
+		</div>
+	<!-- 메인화면(Top8)을 위해 필요 -->
 	<script>
 			(function() {
 	
@@ -238,25 +169,54 @@ height: 417px;
 						} );
 
 						el.addEventListener( 'mouseleave', function() {
-							path.animate( { 'path' : pathConfig.from 
-		}, speed, easing);
-							});
-						});
-			}
+							path.animate( { 'path' : pathConfig.from }, speed, easing );
+						} );
+					} );
+				}
 
-			init();
+				init();
 
-		})();
-	</script>
-	<br/>
-	<br/>
-
-	<!-- 관심사 버튼 정렬을 위한 ul li -->
-	<%-- <ul>
-		<c:forEach var="list" items="${slist}">
-			<li>${list}</li>
-		</c:forEach>
-	</ul> --%>
+			})();
+		</script>
+<!-- 아래메뉴버튼 -->
+		
+		<svg class="hidden">
+			<symbol id="icon-menu" viewBox="0 0 24 24">
+				<title>menu</title>
+				<path d="M23.7,3H0V0h23.7V3z M23.7,7.5H0v3h23.7V7.5z M18.9,15h-14v3h14V15z"/>
+			</symbol>
+			<symbol id="icon-cross" viewBox="0 0 24 24">
+				<title>cross</title>
+				<path d="M14.1,12l7.3,7.3l-2.1,2.1L12,14.1l-7.3,7.3l-2.1-2.1L9.9,12L2.6,4.7l2.1-2.1L12,9.9l7.3-7.3l2.1,2.1L14.1,12z"/>
+			</symbol>
+		</svg>
+		
+		<main class="view">
+			<button class="btn btn--menu">
+				<svg class="icon icon--menu"><use xlink:href="#icon-menu"></use></svg>
+				<svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg>
+			</button>
+			<nav class="tabsnav tabsnav--ibai tabsnav--hidden tabsnav--hidden-default">
+			
+			<c:forEach var="vo" items="${favoriteWordList}" varStatus="status">
+				<div class="tabsnav__item" style="cursor: pointer;" onclick="location.href='<c:url value="/favoriteSelectView.do?favorite_no=${favoriteNumList[status.index].favorite_no}&user_no=${user_no}" />';">
+					<div class="tabsnav__bar"></div>
+					<h3 class="tabsnav__title">${vo.favorite_keyword}</h3>
+				</div>
+			</c:forEach>
+		
+			</nav>
+			<!-- 불필요해보이지만 지우면 작동불가 -->
+			<div class="tabscontent">
+				<!-- 목록에 해당하는 div를 만들지 않아도 오류가 나지 않았다.	 -->	
+				<button class="btn btn--back"><svg class="icon icon--caret"><use xlink:href="#icon-caret"></use></svg></button>
+			</div>
+		</main>
+		<script src="<c:url value='resource/js3/anime.min.js'/>"></script>
+		<script src="<c:url value='resource/js3/enquire.min.js'/>"></script>
+		<script src="<c:url value='resource/js3/tabsnav.js'/>"></script>
+		<script src="<c:url value='resource/js3/demo3.js'/>"></script>
+		
 </body>
 </html>
 

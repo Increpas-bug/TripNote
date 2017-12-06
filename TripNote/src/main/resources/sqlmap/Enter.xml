@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bug.tripnote.dao.mapper.EnterMapper">
+
+	<!-- for test -->
+	<resultMap type="Blog" id="BlogResultSet">
+		<id property="blog_no" column="blog_no"/>
+		<result property="blog_title" column="blog_title"/>
+		<result property="blog_detail" column="blog_detail"/>
+		<result property="blog_profile_photo" column="blog_profile_photo"/>
+		<result property="blog_title_photo" column="blog_title_photo"/>
+		<result property="blog_font" column="blog_font"/>
+		<result property="blog_backgroundcolor" column="blog_backgroundcolor"/>
+		<result property="blog_titlecolor" column="blog_titlecolor"/>
+	</resultMap>
+
+	<!-- 댓글 ResultMap -->	
+	<resultMap type="Comments" id="CommentsResultSet">
+		<id property="comment_no" column="comment_no"/>
+		<result property="comment_content" column="comment_content"/>
+		<result property="comment_date" column="comment_date"/>
+		<result property="posting_no" column="posting_no"/>
+		<result property="user_no" column="user_no"/>
+		<result property="user_nickname" column="user_nickname"/>
+	</resultMap>
+	
+	<!-- 해시태그 ResultMap -->
+	<resultMap type="Hashtag" id="HashtagResultSet">
+		<result property="posting_no" column="posting_no"/>
+		<result property="tag" column="tag"/>
+	</resultMap>
+
+	<!-- 게시글 ResultMap -->
+	<resultMap type="Posting" id="PostingResultSet">
+		<id property="posting_no" column="posting_no" />
+		<result property="posting_title" column="posting_title" />
+		<result property="posting_content" column="posting_content" />
+		<result property="posting_date" column="posting_date" />
+		<result property="posting_uploadpath" column="posting_uploadpath" />
+		<result property="posting_hitcount" column="posting_hitcount" />
+		<result property="posting_weekly_hitcount" column="posting_weekly_hitcount" />
+		<result property="posting_likecount" column="posting_likecount" />
+		<result property="posting_badcount" column="posting_badcount" />
+		<result property="posting_location" column="posting_location" />
+		<result property="user_no" column="user_no" />
+		<result property="blog_no" column="blog_no" />
+		<result property="blog_title" column="blog_title"/><!-- 블로그제목 -->
+		<result property="keepingYN" column="keepingYN"/><!-- 게시글보관여부 -->
+		<result property="likesYN" column="likesYN"/><!-- 게시글좋아요여부 -->
+	</resultMap>
+	
+		<!-- UserfavoriteVO -->
+	<resultMap type="Userfavorite" id="UserfavoriteResultSet">
+		<result property="user_no" column="user_no"/>
+		<result property="favorite_no" column="favorite_no"/>
+	</resultMap>
+	
+	<!-- FavoriteVO -->
+	<resultMap type="Favorite" id="FavoriteResultSet">
+		<id property="favorite_no" column="favorite_no" />
+		<result property="favorite_keyword" column="favorite_keyword"/>
+		<result property="favorite_useyn" column="favorite_useyn"/>
+	</resultMap>
+	
+	<select id="selectTop8" resultMap="PostingResultSet">
+	select * from (select posting_no, posting_title, posting_content, posting_uploadpath, posting_weekly_hitcount, rownum rn from
+		 (select * from posting order by posting_weekly_hitcount desc))
+		 where rn between 1 and 8
+	</select>
+		
+	<select id="selectFavoriteNumList" parameterType="String" resultMap="UserfavoriteResultSet">
+	select user_no, favorite_no
+	from userfavorite
+	where user_no = #{user_no}		
+	</select>
+	
+	<insert id="insertFavoriteCountry" parameterType="Map">
+	insert into userfavorite(USER_NO,FAVORITE_NO)
+	values(#{user_no}, #{favorite_no})
+	</insert>
+	
+	<select id="selectFavoriteWordList" parameterType="String" resultMap="FavoriteResultSet">
+	select favorite_keyword from favorite
+	where favorite_no in( select FAVORITE_NO from userfavorite
+	where user_no = #{user_no} )
+	</select>
+	
+	<select id="selectOnePostingByNum" parameterType="String" resultMap="PostingResultSet">
+	select * from posting
+	where posting_no = #{posting_no} 
+	</select>
+	
+	<!-- ################################################  -->
+	
+	<select id="selectAllPosting" resultMap="PostingResultSet">
+	<![CDATA[
+		SELECT posting.*, blog.blog_title
+             , CASE (SELECT count(*) 
+             		 FROM keeping 
+             		 WHERE posting.POSTING_NO = keeping.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END keepingYN
+             , CASE (SELECT count(*) 
+             		 FROM likes 
+             		 WHERE posting.POSTING_NO = likes.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END likesYN
+		FROM posting, blog
+		WHERE posting.blog_no = blog.blog_no
+		-- AND rownum <= 10
+		ORDER BY posting_no DESC
+	]]>
+	</select>
+	
+	<select id="selectAllComments" resultMap="CommentsResultSet">
+		SELECT comments.*, users.user_nickname 
+		FROM comments, users
+		WHERE comments.USER_NO = users.USER_NO
+        AND posting_no = #{posting_no}
+        ORDER BY comment_no
+	</select>
+	
+	<select id="selectAllHashtags" resultMap="HashtagResultSet">
+		SELECT *
+		FROM hashtag
+		WHERE posting_no = #{posting_no}
+	</select>
+	
+	<!-- 댓글 등록 comment_no 리턴 -->
+	<insert id="insertComments" parameterType="Comments">
+		INSERT INTO comments (comment_no, comment_content, user_no, posting_no)
+		VALUES(comment_seq.NEXTVAL, #{comment_content}, #{user_no}, #{posting_no})
+		<selectKey keyProperty="comment_no" resultType="Integer" order="AFTER">
+			SELECT comment_seq.CURRVAL FROM dual
+		</selectKey>
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComments">
+		DELETE FROM comments
+		WHERE comment_no = #{comment_no}
+	</delete>
+	
+	<!-- 유저명 조회 -->
+	<select id="selectUserNickname" resultType="string">
+		SELECT user_nickname
+		FROM users
+		WHERE user_no = #{user_no}
+	</select>
+	
+	<!-- keeping 처리 -->
+	<insert id="insertKeeping" parameterType="Keeping">
+		INSERT INTO keeping (user_no, posting_no)
+		VALUES(#{user_no},#{posting_no})
+	</insert>
+	
+	<!-- keeping 취소 처리 -->
+	<delete id="deleteKeeping" parameterType="Keeping">
+		DELETE FROM keeping
+		WHERE user_no = #{user_no}
+		AND posting_no = #{posting_no}
+	</delete>
+	
+	<!-- like 처리 -->
+	<insert id="insertLikes" parameterType="Likes">
+		INSERT INTO likes (user_no, posting_no)
+		VALUES(#{user_no},#{posting_no})
+	</insert>
+	
+	<update id="updatePostingLikecountUp" parameterType="string">
+		UPDATE posting
+		SET posting_likecount = posting_likecount + 1
+		WHERE posting_no = #{posting_no}
+	</update>
+	
+	<!-- like 취소 처리 -->
+	<delete id="deleteLikes" parameterType="Likes">
+		DELETE FROM likes
+		WHERE user_no = #{user_no}
+		AND posting_no = #{posting_no}
+	</delete>
+	
+	<update id="updatePostingLikecountDown" parameterType="string">
+		UPDATE posting
+		SET posting_likecount = posting_likecount - 1
+		WHERE posting_no = #{posting_no}
+	</update>
+	
+	<!-- 주간 좋아요 -->
+	<select id="checkWeeklyHitcount" resultType="int">
+		SELECT count(*)
+		FROM weeklyhitcount 
+		WHERE posting_no = #{posting_no}
+		AND weekly_number = #{weekly_number}
+	</select>
+	
+	<insert id="insertWeeklyHitcount">
+		INSERT INTO weeklyhitcount (posting_no, weekly_number, weekly_hitcount)
+		VALUES(#{posting_no}, #{weekly_number}, 1)
+	</insert>
+	
+	<update id="updateWeeklyHitcountUp">
+		UPDATE weeklyhitcount
+		SET weekly_hitcount = weekly_hitcount + 1
+		WHERE posting_no = #{posting_no}
+		AND weekly_number = #{weekly_number}
+	</update>
+	
+	<update id="updateWeeklyHitcountDown">
+		UPDATE weeklyhitcount
+		SET weekly_hitcount = weekly_hitcount - 1
+		WHERE posting_no = #{posting_no}
+		AND weekly_number = #{weekly_number}
+	</update>
+	
+	<select id="selectPostingLikecount" resultType="int">
+		SELECT posting_likecount
+		FROM posting 
+		WHERE posting_no = #{posting_no}
+	</select>
+	
+<!-- 
+	<resultMap type="#modelname" id="YourResultSet">
+		<id property="param1" column="columnname1" />
+		<result property="param2" column="columnname2" />
+		<result property="param3" column="columnname3" />
+	</resultMap>
+
+	<select id="getAll" resultMap="YourResultSet">
+		SELECT * FROM tablename1
+	</select>
+
+	<insert id="insertSomething" parameterType="#modelname">
+		INSERT INTO tablename1 (columnname1, columnname2, columnname3)
+		VALUES(#{value1},#{value2},#{value3})
+	</insert>
+
+	<update id="updateSomething" parameterType="#modelname">
+		UPDATE tablename1
+		SET
+		columnname1=#{param1}
+		WHERE
+		columnname2 = #{param2}
+	</update>
+
+	<delete id="deleteSomething" parameterType="int">
+		DELETE FROM tablename1 WHERE
+		columnname1 = #{param1}
+	</delete>
+ -->
+</mapper>

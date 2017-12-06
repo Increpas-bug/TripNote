@@ -27,6 +27,7 @@
 		<mapper resource="sqlmap/AdminMapper.xml" />
 		<mapper resource="sqlmap/favoriteMain.xml" />
 		<mapper resource="sqlmap/Posting.xml" />
+		<mapper resource="sqlmap/Enter.xml" />
 		<!-- <mapper resource="sqlmap/MemberMapper.xml" /> -->
 	</mappers>
 
