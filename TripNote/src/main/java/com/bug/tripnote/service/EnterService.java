@@ -31,9 +31,16 @@ public class EnterService {
 		
 		for (PostingVO vo : top8List) {
 			String content = vo.getPosting_content();
-			vo.setPosting_content(content.substring(0, 27) + "...");
+			int content_fix_length = 29;
+			int title_fix_length = 12;
+			if (content.length()>=content_fix_length) {
+				vo.setPosting_content(content.substring(0, content_fix_length-2) + "  ...");
+			}
 			String title = vo.getPosting_title();
-			vo.setPosting_title(title.substring(0, 10));			
+			if (title.length()>=title_fix_length) {
+				vo.setPosting_title(title.substring(0, title_fix_length-2));			
+				}		
+			
 		}
 		
 		return top8List;
