@@ -356,44 +356,12 @@
 </script>
 </head>
 <body>
-<!-- Wrapper -->
-<div id="wrapper">
-	<!-- Main -->
-	<section id="blog">
-		<!-- profile -->
-		<c:choose>
-			<c:when test="${not empty blogVO.blog_title_photo}">
-				<c:set var="title_img" value="background-image: url('/upload/${blogVO.blog_title_photo}');width:1000;"/>
-			</c:when>
-			<c:otherwise>
-				<c:set var="title_img" value="" />
-			</c:otherwise>
-		</c:choose>
-		<div id="profile" style="${title_img}">
-			<span class="photo">
-				<img src="/upload/${blogVO.blog_profile_photo}" width="300"/>
-			</span>
-			<h1>${blogVO.blog_title}</h1>
-			<h3>${blogVO.blog_detail}</h3>
-			<ul class="icons">
-				<li><a href="blog_theme.do?user_no=${sessionScope.member.user_no}">블로그 테마 설정</a></li>
-				<li><a href="#?user_no=${sessionScope.member.user_no}">관심국가수정</a></li>
-				<li><a href="keepingPage.do?user_no=${sessionScope.member.user_no}">keeping page</a></li>
-			</ul>
-			
-			<ul class="">
-				<li><a href="posting_Write.do" class="icon-pencil"> <span class="label">포스팅 등록</span>
-				</a></li>
-				<li><a href="posting_Search.do"> <span class="label">검색 테스트</span>
-				</a></li>
-			</ul>
-		</div>
-			<!-- timeline -->
-		<section class="timeline">
+
+<section class="timeline">
 			
 <div class="container">
 	<div class="row">
-		<c:forEach var="posting" items="${postingList}" varStatus="stat">
+		<c:forEach var="posting" items="${keepingList}" varStatus="stat">
 		<!-- 보관(keeping), 좋아요(likes) -->
 		<form action="" id="frm_common_${posting.posting_no}">
 			<input type="hidden" name="user_no" value="${sessionScope.member.user_no}">
@@ -558,9 +526,9 @@
 
 	<!-- /container -->
 		</section>
-	</section>
-</div>
+
 </body>
 </html>
+
 
 <%@ include file="4_Footer.jsp" %>

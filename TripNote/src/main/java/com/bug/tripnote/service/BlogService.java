@@ -97,4 +97,18 @@ public class BlogService {
 		return postingList;
 	}
 	
+	// keeping 불러오기
+	@Transactional
+	public List<PostingVO> selectMyKeeping(String login_user_no) {
+		List<PostingVO> keepingList = blogDAO.selectMyKeeping(login_user_no);
+			
+		for (PostingVO vo : keepingList) {
+			int posting_no = vo.getPosting_no();
+			vo.setHashtag(dao.selectAllHashtags(posting_no)); // 태그
+			vo.setComments(dao.selectAllComments(posting_no)); // 댓글
+		}
+			
+		return keepingList;		
+	}
+	
 }

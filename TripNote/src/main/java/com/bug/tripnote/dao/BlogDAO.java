@@ -84,5 +84,11 @@ public class BlogDAO {
 		List<PostingVO> postingList = sqlSessionTemplate.selectList("blog_ns.selectMyPosting", my_user_no);
 		return postingList;
 	}
+	
+	// keeping 불러오기
+	public List<PostingVO> selectMyKeeping(String login_user_no) {
+		List<PostingVO> keepingList = sqlSessionTemplate.selectList("blog_ns.selectMyKeeping", login_user_no);
+		return keepingList;
+	}
 }
 

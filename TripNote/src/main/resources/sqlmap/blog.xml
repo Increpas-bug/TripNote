@@ -105,4 +105,26 @@
 		ORDER BY posting_no DESC
 	]]>
 	</select>
+	
+	<select id="selectMyKeeping" resultMap="PostingResultSet">
+		SELECT posting.*, (select blog_title from blog where posting.BLOG_NO = blog.BLOG_NO) blog_title
+             , CASE (SELECT count(*) 
+                    FROM keeping 
+                    WHERE posting.POSTING_NO = keeping.POSTING_NO 
+                    AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END keepingYN
+             , CASE (SELECT count(*) 
+                    FROM likes 
+                    WHERE posting.POSTING_NO = likes.POSTING_NO 
+                    AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END likesYN
+      FROM posting, keeping
+      WHERE posting.POSTING_NO = keeping.POSTING_NO
+        AND keeping.USER_NO = #{login_user_no}
+      ORDER BY posting.POSTING_NO DESC
+	</select>
 </mapper>
