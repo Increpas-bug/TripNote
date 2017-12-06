@@ -46,4 +46,8 @@ public class EnterDAO {
 		map.put("posting_no", posting_no);
 		return mapper.selectOnePostingByNum(map);
 	}
+	
+	public void deleteFavoriteCountry(String user_no){
+		mapper.deleteFavoriteCountry(user_no);
+	}
 }

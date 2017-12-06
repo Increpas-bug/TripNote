@@ -114,7 +114,7 @@ $(document).ready(function() {
 <input type='hidden' value="3" name='no' id='china'>
 <input type='hidden' value="4" name='no' id='taiwan'>
 <input type='hidden' value="5" name='no' id='vietnam'>
-<input type="hidden" value="${user_no}" name="user_no">
+<input type="hidden" value="${sessionScope.member.user_no}" name="user_no">
 
 <div style="clear: both; width: 100%; padding-left: 20px;">
 <input type="submit" class="btn btn-primary" value="Submit">

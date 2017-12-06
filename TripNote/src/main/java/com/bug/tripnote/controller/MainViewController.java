@@ -71,14 +71,22 @@ public class MainViewController {
 		
 	}
 	
+	@RequestMapping(value="/updateFC.do", method = RequestMethod.GET)
+	public String updateFavoriteCountryForm(){
+		return "main2/countryChoice";
+	}
+	
+	
 	@RequestMapping(value="/insertFC.do", method = RequestMethod.GET)
-	public String insertFavoriteCountry(String user_no, String[] country,Model model){
+	public String insertFavoriteCountry(String user_no, String[] country, Model model){
 		String viewpage = "main2/2_Main2";
 		System.out.println("insertFC.do>>>>>>>>>>>>>>");
 		System.out.println("user_no : " + user_no);
 		for (String string : country) {
 			System.out.println("country : " + string);
 		}
+		
+		service.deleteFavoriteCountry(user_no);
 		// 관심국가번호저장
 		service.insertFavoriteCountry(user_no, country);
 		

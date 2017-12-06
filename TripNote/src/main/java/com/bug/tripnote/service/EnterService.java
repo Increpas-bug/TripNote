@@ -82,4 +82,7 @@ public class EnterService {
 		return vo;
 	}
 
+	public void deleteFavoriteCountry(String user_no){
+		dao.deleteFavoriteCountry(user_no);
+	}
 }

@@ -377,7 +377,7 @@
 			<h3>${blogVO.blog_detail}</h3>
 			<ul class="icons">
 				<li><a href="blog_theme.do?user_no=${sessionScope.member.user_no}">블로그 테마 설정</a></li>
-				<li><a href="#?user_no=${sessionScope.member.user_no}">관심국가수정</a></li>
+				<li><a href="updateFC.do">관심국가수정</a></li>
 				<li><a href="keepingPage.do?user_no=${sessionScope.member.user_no}">keeping page</a></li>
 			</ul>
 			

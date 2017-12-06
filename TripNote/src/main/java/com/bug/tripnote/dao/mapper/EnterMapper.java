@@ -14,5 +14,5 @@ public interface EnterMapper {
 	public List<FavoriteVO> selectFavoriteWordList(String user_no);
 	public void insertFavoriteCountry(Map<String,Object> map);
 	public PostingVO selectOnePostingByNum(Map<String, String> map);
-	
+	public void deleteFavoriteCountry(String user_no);
 }

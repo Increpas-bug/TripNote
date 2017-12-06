@@ -109,6 +109,13 @@
     AND posting_no = #{posting_no} 
 	</select>
 	
+	
+	<delete id="deleteFavoriteCountry" parameterType="String">
+		delete from userfavorite
+		where user_no = #{user_no}
+	</delete>
+
+	
 	<!-- ################################################  -->
 	
 	<select id="selectAllPosting" resultMap="PostingResultSet">
