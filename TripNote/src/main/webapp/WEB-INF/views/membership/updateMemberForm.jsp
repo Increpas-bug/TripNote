@@ -7,6 +7,7 @@
 <!-- 스프링  태그 라이브러리 사용 -->
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<%@ include file="1_Header.jsp"%>
 <!-- Main -->
 <html lang="en" class="demo-2 no-js">
 <head>
@@ -15,7 +16,9 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>회원정보수정</title>
+
 <meta name="description"
 	content="Hover Effects with animated SVG Shapes using Snap.svg" />
 <meta name="keywords"

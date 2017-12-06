@@ -17,28 +17,21 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Trip-note 포스팅 등록</title>
-<meta name="description"
-	content="Hover Effects with animated SVG Shapes using Snap.svg" />
-<meta name="keywords"
-	content="animated svg, hover effect, grid, svg shape html, " />
+
+<meta name="description" content="Hover Effects with animated SVG Shapes using Snap.svg" />
+<meta name="keywords" content="animated svg, hover effect, grid, svg shape html, " />
 <meta name="author" content="Codrops" />
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value ='resource/css2/normalize.css'/>" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value ='resource/css2/demo.css'/>" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value ='resource/css2/component.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/normalize.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/demo.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value ='resource/css2/component.css'/>" />
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
 <script src="<c:url value ='resource/js2/snap.svg-min.js'/>"></script>
 
@@ -46,7 +39,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 </head>
-
 <body>
 	<script type="text/javascript">
 		// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
