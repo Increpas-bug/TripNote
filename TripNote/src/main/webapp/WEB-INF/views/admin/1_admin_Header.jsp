@@ -84,6 +84,11 @@
 						Bad Posting
 						</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="admin_Main.do">
+						Admin Main
+						</a>
+					</li>
 					
 				</ul>
 			</div>

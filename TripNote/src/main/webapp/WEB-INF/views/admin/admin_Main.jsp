@@ -63,7 +63,7 @@
 <!-- 메인페이지 수정  -->
 
 <!-- Main -->
-<header class="masthead" id="home">
+<header class="masthead2" id="home">
 	<div class="container">
 		<div class="intro-text">
 			<div class="intro-heading text-uppercase">- Admin Page -</div>
