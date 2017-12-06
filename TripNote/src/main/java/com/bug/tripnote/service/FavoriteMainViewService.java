@@ -149,6 +149,15 @@ public class FavoriteMainViewService {
 	@Transactional
 	public List<PostingVO> selectPostingListByKeyword(String favorite_no, String login_user_no) {
 		List<PostingVO> postingList = dao.selectPostingListByKeyword(favorite_no, login_user_no);
+
+		// 태그/댓글 리스트
+		for (PostingVO vo : postingList) {
+			int posting_no = vo.getPosting_no();
+			vo.setHashtag(dao.selectAllHashtags(posting_no)); // 태그
+			vo.setComments(dao.selectAllComments(posting_no)); // 댓글
+		}
+		
+		logger.info(postingList.toString());
 		
 		return postingList;
 	}
