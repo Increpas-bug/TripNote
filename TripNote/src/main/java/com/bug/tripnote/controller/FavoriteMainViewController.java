@@ -46,7 +46,7 @@ public class FavoriteMainViewController {
 		return "posting/2_Main2";
 	}
 
-	// 로그인후 main에서 관심사 선택시 노출되는 게시글
+	// 로그인후 main에서 관심사 선택시 노출되는 게시글 리스트
 	@RequestMapping(value = "/favoriteSelectView.do", method = RequestMethod.GET)
 	public String favoriteSelectView(String favorite_no, HttpSession session, Model model) {
 		MemberVO vo = (MemberVO) session.getAttribute("member");

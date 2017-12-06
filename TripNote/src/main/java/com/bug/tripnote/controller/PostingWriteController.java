@@ -2,20 +2,19 @@ package com.bug.tripnote.controller;
 
 import java.io.File;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.model.PostingVO;
 import com.bug.tripnote.service.PostingWriteService;
 
@@ -37,12 +36,12 @@ public class PostingWriteController {
 	
 	
 		@RequestMapping(method = RequestMethod.POST)
-		public String onSubmit(@Valid @ModelAttribute("Posting") PostingVO pVo, String tag) {
+		public String onSubmit(@ModelAttribute("Posting") PostingVO pVo, HttpSession session) {
 			logger.info(pVo.toString());
-			/*if (errors.hasErrors()) {
-				model.addAttribute("requestPageNum", requestPageNum);
-				return "PostingWrite";
-			}*/
+			
+			MemberVO mVo = (MemberVO) session.getAttribute("member");
+			String user_no = mVo.getUser_no();
+			
 			try {
 		
 				// 파일 업로드
@@ -51,8 +50,6 @@ public class PostingWriteController {
 				pVo.setPosting_uploadpath(mfile.getOriginalFilename());
 				
 				// Service 메소드를 호출
-				service.insertPost(pVo);
-				service.insertTag(tag);
 				System.out.println("컨트롤러입니다 >> 서비스로 갔수까?. ");
 				System.out.println("mfile = " + mfile);
 
@@ -69,6 +66,9 @@ public class PostingWriteController {
 
 				}
 
+				service.insertPost(pVo, user_no);
+				service.insertTag(pVo.getPosting_no(), pVo.getTag());
+				
 				return "posting/2_Posting_write";  
 				
 			} catch (Exception e) {
