@@ -58,9 +58,10 @@ img.top8 {
 <div class="page" id="page-home" style="overflow: hidden; height: auto;"  >
 		
 			<section id="grid" class="grid clearfix">
+			
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["0"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["0"].posting_uploadpath}'/>">
+						<img class="top8" src='/upload/${top8List["0"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["0"].posting_title}</h2>
@@ -71,7 +72,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["1"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["1"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["1"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["1"].posting_title}</h2>
@@ -82,7 +83,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["2"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["2"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["2"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["2"].posting_title}</h2>
@@ -93,7 +94,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["3"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["3"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["3"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["3"].posting_title}</h2>
@@ -104,7 +105,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["4"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["4"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["4"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["4"].posting_title}</h2>
@@ -115,7 +116,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["5"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["5"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["5"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["5"].posting_title}</h2>
@@ -126,7 +127,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["6"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["6"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["6"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["6"].posting_title}</h2>
@@ -137,7 +138,7 @@ img.top8 {
 				</a>
 				<a href="<c:url value='/readTop8Detail.do?posting_no=${top8List["7"].posting_no}' />" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
 					<figure>
-						<img class="top8" src="<c:url value ='resource/img/main3/${top8List["7"].posting_uploadpath}'/>" />
+						<img class="top8" src='/upload/${top8List["7"].posting_uploadpath}'>
 						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
 						<figcaption>
 							<h2>${top8List["7"].posting_title}</h2>

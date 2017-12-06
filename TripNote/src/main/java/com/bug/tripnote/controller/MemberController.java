@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.service.MemberService;
 
+import javafx.scene.control.Alert;
+
 /**
  * 
  * @author 나레기
@@ -46,9 +48,12 @@ public class MemberController {
 		int row = service.insertMember(vo);
 
 		if (row == 1) {
-			return "redirect:loginForm.do";
+			System.out.println("오긴오냐?");
+			return "index";
+			/*return "redirect:loginForm.do";*/
 		} else {
-			return "join.do";
+			System.out.println("여기냐?");
+			return "membership/2_Member_Main";
 		}
 	}
 	
@@ -109,14 +114,18 @@ public class MemberController {
 		MemberVO resultVo = null;
 		resultVo = service.selectMember(vo);
 
-		if (resultVo == null) {
+		if (resultVo == null) {			
+			System.out.println("회원가입이나 해!");
 			return "membership/2_Member_Main";
 		} else {
 			logger.info(resultVo.toString());
 			
 			session.setAttribute("member", resultVo);
 			
-			return "index";
+			String user_no = resultVo.getUser_no();
+			System.out.println("user_no : " + user_no);
+			
+			return "redirect:2_Main2.do?user_no=" + user_no;
 		}
 
 	}

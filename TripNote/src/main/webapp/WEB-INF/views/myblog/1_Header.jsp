@@ -63,7 +63,7 @@
 			<div class="container">
 
 				<a class="navbar-brand js-scroll-trigger"
-					href="<%=request.getContextPath()%>"
+					href="2_Main2.do?user_no=${sessionScope.member.user_no}"
 					style="font-size: 25px; font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
 					TripNote</a>
 
@@ -75,20 +75,14 @@
 					Menu <i class="fa fa-bars"></i>
 				</button>
 
-				<!-- admin menu -->
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav text-uppercase ml-auto">
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="admin_MemberList.do"> All Member </a></li>
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="admin_Blacklist.do"> Black List </a></li>
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="admin_PostingList.do"> All Posting </a></li>
-						<li class="nav-item"><a class="nav-link js-scroll-trigger"
-							href="admin_BadPostingList.do"> Bad Posting </a></li>
+	<!-- menu -->
+			<div class="collapse navbar-collapse" id="navbarResponsive" style="font-size: 16px;">
+				<ul class="navbar-nav text-uppercase ml-auto">
+				
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="2_My_Main.do?user_no=${sessionScope.member.user_no}">MyBlog</a></li>
 
-					</ul>
-				</div>
+				</ul>
 			</div>
 
 		<!-- 검색ㅅㅈ -->

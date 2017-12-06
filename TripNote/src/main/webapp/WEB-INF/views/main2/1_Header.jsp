@@ -63,7 +63,7 @@
 		<div class="container">
 
 			<a class="navbar-brand js-scroll-trigger"
-				href="<%=request.getContextPath()%>"
+				href="2_Main2.do?user_no=${sessionScope.member.user_no}"
 				style="font-size: 25px; font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
 				TripNote</a>
 
@@ -78,16 +78,10 @@
 			<!-- manu -->
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
+					
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">Login & Membership</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">Services</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#blog">Blog</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">About</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#team">Team Information</a></li>
+						href="2_My_Main.do?user_no=${sessionScope.member.user_no}">MyBlog</a></li>
+					
 				</ul>
 			</div>
 		</div>

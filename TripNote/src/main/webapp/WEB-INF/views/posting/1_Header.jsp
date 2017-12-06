@@ -63,7 +63,7 @@
 		style="background-color: #343a40;">
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger"
-				href="<%=request.getContextPath()%>"
+				href="2_Main2.do?user_no=${sessionScope.member.user_no}"
 				style="font-size: 25px; font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;">
 				TripNote</a>
 
@@ -78,12 +78,9 @@
 			<!-- menu -->
 			<div class="collapse navbar-collapse" id="navbarResponsive" style="font-size: 16px;">
 				<ul class="navbar-nav text-uppercase ml-auto">
+				
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href=" "> Enter </a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href=" "> Cancel </a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href=" "> MyBlog </a></li>
+						href="2_My_Main.do?user_no=${sessionScope.member.user_no}">MyBlog</a></li>
 
 				</ul>
 			</div>
