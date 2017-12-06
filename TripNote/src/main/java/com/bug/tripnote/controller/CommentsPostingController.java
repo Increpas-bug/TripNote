@@ -18,6 +18,12 @@ import com.bug.tripnote.service.FavoriteMainViewService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+/**
+ * 댓글등록, 삭제
+ * @author 김은정
+ *
+ */
+
 @Controller
 public class CommentsPostingController {
 

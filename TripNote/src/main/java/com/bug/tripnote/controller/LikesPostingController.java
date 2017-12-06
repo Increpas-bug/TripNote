@@ -18,6 +18,12 @@ import com.bug.tripnote.service.FavoriteMainViewService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+/**
+ * 좋아요 기능 : 추가, 취소
+ * @author 김은정
+ *
+ */
+
 @Controller
 public class LikesPostingController {
 

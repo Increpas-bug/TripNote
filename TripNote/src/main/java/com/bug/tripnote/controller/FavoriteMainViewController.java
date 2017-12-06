@@ -16,6 +16,12 @@ import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.model.PostingVO;
 import com.bug.tripnote.service.FavoriteMainViewService;
 
+/**
+ * 게시글 전체 리스트, 관심사키워드로 조회한 게시글리스트
+ * @author 김은정
+ *
+ */
+
 @Controller
 public class FavoriteMainViewController {
 
