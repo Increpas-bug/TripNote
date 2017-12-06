@@ -16,6 +16,12 @@ import com.bug.tripnote.model.KeepingVO;
 import com.bug.tripnote.model.LikesVO;
 import com.bug.tripnote.model.PostingVO;
 
+/**
+ * 
+ * @author 김은정
+ *
+ */
+
 @Repository
 public class FavoriteMainViewDAO {
 

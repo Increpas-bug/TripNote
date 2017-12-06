@@ -31,7 +31,7 @@ public class FavoriteMainViewController {
 	@Autowired
 	private FavoriteMainViewService service;
 	
-	// main 관심사 선택시 노출되는 게시글
+	// 게시글 전체 리스트 조회
 	@RequestMapping(value = "/favoriteMainView.do", method = RequestMethod.GET)
 	public String favoriteMainView(HttpSession session, Model model) {
 		MemberVO vo = (MemberVO) session.getAttribute("member");
@@ -43,10 +43,10 @@ public class FavoriteMainViewController {
 		model.addAttribute("postingList", postingList);
 		logger.info(postingList.toString());
 		
-//		return "posting/favoriteMainView";
 		return "posting/2_Main2";
 	}
 
+	// 로그인후 main에서 관심사 선택시 노출되는 게시글
 	@RequestMapping(value = "/favoriteSelectView.do", method = RequestMethod.GET)
 	public String favoriteSelectView(String favorite_no, HttpSession session, Model model) {
 		MemberVO vo = (MemberVO) session.getAttribute("member");
