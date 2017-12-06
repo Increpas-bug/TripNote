@@ -87,9 +87,26 @@
 	where user_no = #{user_no} )
 	</select>
 	
-	<select id="selectOnePostingByNum" parameterType="String" resultMap="PostingResultSet">
-	select * from posting
-	where posting_no = #{posting_no} 
+	<!-- 수정 : 포스팅 출력시 상세정보 추가 -->
+	<select id="selectOnePostingByNum" parameterType="map" resultMap="PostingResultSet">
+        select posting.*, blog.blog_title
+             , CASE (SELECT count(*) 
+             		 FROM keeping 
+             		 WHERE posting.POSTING_NO = keeping.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END keepingYN
+             , CASE (SELECT count(*) 
+             		 FROM likes 
+             		 WHERE posting.POSTING_NO = likes.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END likesYN
+        from posting, blog
+	where posting.blog_no = blog.blog_no
+    AND posting_no = #{posting_no} 
 	</select>
 	
 	<!-- ################################################  -->

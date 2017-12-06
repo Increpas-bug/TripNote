@@ -13,6 +13,6 @@ public interface EnterMapper {
 	public List<PostingVO> selectTop8();
 	public List<FavoriteVO> selectFavoriteWordList(String user_no);
 	public void insertFavoriteCountry(Map<String,Object> map);
-	public PostingVO selectOnePostingByNum(String posting_no);
+	public PostingVO selectOnePostingByNum(Map<String, String> map);
 	
 }

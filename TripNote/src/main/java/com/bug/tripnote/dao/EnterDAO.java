@@ -1,5 +1,6 @@
 package com.bug.tripnote.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,10 @@ public class EnterDAO {
 		mapper.insertFavoriteCountry(map);
 	}
 
-	public PostingVO selectOnePostingByNum(String posting_no){
-		return mapper.selectOnePostingByNum(posting_no);
+	public PostingVO selectOnePostingByNum(String posting_no, String login_user_no){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("login_user_no", login_user_no);
+		map.put("posting_no", posting_no);
+		return mapper.selectOnePostingByNum(map);
 	}
 }

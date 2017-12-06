@@ -2,6 +2,8 @@ package com.bug.tripnote.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bug.tripnote.model.FavoriteVO;
+import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.model.PostingVO;
 import com.bug.tripnote.model.UserfavoriteVO;
 import com.bug.tripnote.service.EnterService;
@@ -95,16 +98,21 @@ public class MainViewController {
 		return viewpage;
 		
 	}
-	
+
 	// 은정따리 은정따 ( Top8 게시글 상세보기 )
 	@RequestMapping(value="/readTop8Detail.do", method = RequestMethod.GET)
-	public String top8DetailView(String posting_no, Model model){
+	public String top8DetailView(String posting_no, HttpSession session, Model model){
 		String viewpage = "posting/PostingDetail"; // 어차피 변경될 녀석. 
 		System.out.println("readTop8Detail.do>>>>>>>>>>>>>>>>>>>>>>");
 		System.out.println("posting_no : " + posting_no);
-		PostingVO posting = service.selectOnePostingByNum(posting_no);
+		
+		MemberVO mVo = (MemberVO) session.getAttribute("member");
+		String login_user_no = mVo.getUser_no();
+		PostingVO posting = service.selectOnePostingByNum(posting_no, login_user_no);
+		
 		System.out.println("posting.getPosting_no() : " + posting.getPosting_no());
 		System.out.println("posting.getPosting_title() : " + posting.getPosting_title());
+		
 		model.addAttribute("posting", posting);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<readTop8Detail.do");
 		return viewpage;		

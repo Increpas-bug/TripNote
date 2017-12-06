@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bug.tripnote.dao.EnterDAO;
+import com.bug.tripnote.dao.FavoriteMainViewDAO;
 import com.bug.tripnote.model.FavoriteVO;
 import com.bug.tripnote.model.PostingVO;
 import com.bug.tripnote.model.UserfavoriteVO;
@@ -17,6 +19,8 @@ public class EnterService {
 	
 	@Autowired
 	EnterDAO dao;
+	@Autowired
+	FavoriteMainViewDAO fdao;
 	
 	public List<UserfavoriteVO> selectFavoriteNumList(String user_no) {
 		
@@ -63,9 +67,19 @@ public class EnterService {
 			dao.insertFavoriteCountry(map);}
 		}
 	}
-	
-	public PostingVO selectOnePostingByNum(String posting_no) {
-		return dao.selectOnePostingByNum(posting_no);		
+
+    // Top8 상세보기 포스팅정보(+상세정보)
+	@Transactional
+	public PostingVO selectOnePostingByNum(String posting_no, String login_user_no) {
+        // 게시글 정보
+        PostingVO vo = dao.selectOnePostingByNum(posting_no, login_user_no);
+        
+		// 태그/댓글 리스트
+        int posting_no_search = vo.getPosting_no();
+        vo.setHashtag(fdao.selectAllHashtags(posting_no_search)); // 태그
+        vo.setComments(fdao.selectAllComments(posting_no_search)); // 댓글
+		
+		return vo;
 	}
 
 }
