@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bug.tripnote.dao.BlogDAO;
 import com.bug.tripnote.dao.MemberDAO;
 import com.bug.tripnote.model.MemberVO;
 
@@ -23,9 +24,16 @@ public class MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
+	@Autowired
+	private BlogDAO bdao;
+	
+	
 	public int insertMember(MemberVO vo) {
 		int row = dao.insertMember( vo );
 //		logger.info(vo.toString());
+		bdao.blogYNInsert(vo.getUser_no());
+		bdao.blogYNUpdate(vo.getUser_no());
+		logger.info("insertMember : "+vo.getUser_no());
 		
 		return row;
 		
