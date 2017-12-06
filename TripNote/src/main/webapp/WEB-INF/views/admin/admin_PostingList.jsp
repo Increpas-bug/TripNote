@@ -37,6 +37,7 @@
 	</tr>
 	<!--  itmes: 컨트롤러 모델 속성에 부여된 값 -->
 	<c:forEach var="postingVO" items="${admin_selectAllPosting}">
+
 		<tr>
 			<!-- 		<input type="checkbox" name="">		 -->
 
@@ -52,13 +53,11 @@
 			<td>${postingVO.blog_no}</td>
 		</tr>
 	</c:forEach>
-	<%-- <c:forEach var="postingVO" items="${Model.postingVOList}">
-				<td>${postingVO.posting_content}</td> --%>
-
-
-
 
 </table>
+<br />
+<br />
+<br />
 
 
 <%@include file="9_Footer.jsp"%>

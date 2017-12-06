@@ -49,15 +49,11 @@
 
 	</c:forEach>
 
-
-
-
-
-
-
-
 	<tr style="height: 361px;">
 </table>
+<br />
+<br />
+<br />
 
 
 <%@include file="9_Footer.jsp"%>

@@ -61,84 +61,75 @@
 				<div class="row">
 					<div class="col-lg-12 text-left">
 						<h3 class="section-heading text-uppercase">Membership</h3>
-						<br> 
-						<br>
+						<br> <br>
 						<table style="font-size: 18px; font-weight: 500;">
-						
+
 							<tr>
 								<td>No</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_no" value="${member.user_no}"readonly >
+									type="text" name="user_no" value="${member.user_no}" readonly>
 								</td>
 							</tr>
+
 							<tr>
-							<td>
+								<td>&nbsp;</td>
 							<tr>
 								<td>Email</td>
 								<td><input class="form-control" style="width: 300px;"
-									name="user_email" type="text"value="${member.user_email}" placeholder="email *"></td>
-					
+									name="user_email" type="text" value="${member.user_email}"
+									placeholder="email *"></td>
+
 							</tr>
+
 							<tr>
-							<td>
-							&nbsp;
-							</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td>Password</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="password" name="user_pw" value="${member.user_pw}" placeholder="password *">
-								</td>
+									type="password" name="user_pw" value="${member.user_pw}"
+									placeholder="password *"></td>
 							</tr>
 							<tr>
-							<td>
-							&nbsp;
-							</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td>Name</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_nickname"  value="${member.user_nickname}" readonly placeholder="name *">
+									type="text" name="user_nickname"
+									value="${member.user_nickname}" readonly placeholder="name *">
 								</td>
 							</tr>
 							<tr>
-							<td>
-							&nbsp;
-							</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td>Birthday</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_birth" size="6" value="${member.user_birth}" placeholder="YYMMDD *">
-								</td>
+									type="text" name="user_birth" size="6"
+									value="${member.user_birth}" placeholder="YYMMDD *"></td>
 							</tr>
 							<tr>
-							<td>
-							&nbsp;
-							</td>
+								<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td>Admin Number</td>
 								<td><input class="form-control" style="width: 300px;"
-									type="text" name="user_adminyn" value="${member.user_adminyn}" readonly >
-								</td>
-							</tr>
-                      		<tr>
-							<td>
-							&nbsp;
-							</td>
+									type="text" name="user_adminyn" value="${member.user_adminyn}"
+									readonly></td>
 							</tr>
 							<tr>
-							<td>
-							</td>
-							<td>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-								<button class="btn btn-primary " type="submit"
-									    style="padding: 5 10 5 10; width: 100px; ">수정하기</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button class="btn btn-primary " type="reset"
-									    style="padding: 5 10 5 10; width: 100px;">다시작성</button>
-							</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn btn-primary " type="submit"
+										style="padding: 5 10 5 10; width: 100px;">수정하기</button>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn btn-primary " type="reset"
+										style="padding: 5 10 5 10; width: 100px;">취소</button>
+								</td>
 							</tr>
 						</table>
 					</div>

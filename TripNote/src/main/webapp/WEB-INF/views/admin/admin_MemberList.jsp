@@ -51,5 +51,8 @@
 	</c:forEach>
 
 </table>
+<br />
+<br />
+<br />
 
 <%@include file="9_Footer.jsp"%>
