@@ -138,4 +138,12 @@ public class FavoriteMainViewService {
 		
 		return likecount;
 	}
+
+	// 관심사 키워드로 조회한 포스팅 리스트
+	@Transactional
+	public List<PostingVO> selectPostingListByKeyword(String favorite_no, String login_user_no) {
+		List<PostingVO> postingList = dao.selectPostingListByKeyword(favorite_no, login_user_no);
+		
+		return postingList;
+	}
 }

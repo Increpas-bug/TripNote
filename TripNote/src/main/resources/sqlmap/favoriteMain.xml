@@ -70,7 +70,6 @@
                END likesYN
 		FROM posting, blog
 		WHERE posting.blog_no = blog.blog_no
-		-- AND rownum <= 10
 		ORDER BY posting_no DESC
 	]]>
 	</select>
@@ -181,6 +180,34 @@
 		FROM posting 
 		WHERE posting_no = #{posting_no}
 	</select>
+	
+	<!-- 관심사키워드로 조회한 포스팅리스트 -->
+	<select id="selectPostingListByKeyword" parameterType="map" resultMap="PostingResultSet">
+		SELECT posting.*, blog.blog_title
+             , CASE (SELECT count(*) 
+             		 FROM keeping 
+             		 WHERE posting.POSTING_NO = keeping.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END keepingYN
+             , CASE (SELECT count(*) 
+             		 FROM likes 
+             		 WHERE posting.POSTING_NO = likes.POSTING_NO 
+             		 AND user_no = #{login_user_no})
+               WHEN 0 THEN 'N' 
+               ELSE 'Y' 
+               END likesYN
+		FROM posting, blog
+		WHERE posting.blog_no = blog.blog_no
+		AND posting_no IN (SELECT DISTINCT posting_no FROM favorite, favoritedetail, hashtag
+                            WHERE favoritedetail.FAVORITE_NO = favorite.FAVORITE_NO
+                            AND favorite.FAVORITE_USEYN = 'Y'
+                            AND favorite.FAVORITE_NO = #{favorite_no}
+                            AND hashtag.TAG = favoritedetail.FAVORITE_DETAIL)
+	</select>
+	
+	
 	
 <!-- 
 	<resultMap type="#modelname" id="YourResultSet">

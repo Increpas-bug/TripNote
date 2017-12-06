@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bug.tripnote.model.CommentsVO;
+import com.bug.tripnote.model.FavoritedetailVO;
 import com.bug.tripnote.model.KeepingVO;
 import com.bug.tripnote.model.LikesVO;
 import com.bug.tripnote.model.PostingVO;
@@ -41,4 +42,7 @@ public interface FavoriteMainMapper {
 	public void updateWeeklyHitcountUp(Map<String, String> map);
 	public void updateWeeklyHitcountDown(Map<String, String> map);
 	public int selectPostingLikecount(String posting_no);
+	
+	// 관심사 키워드로 조회한 포스팅 리스트
+	public List<PostingVO> selectPostingListByKeyword(Map<String, String> map);
 }

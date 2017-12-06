@@ -1,5 +1,6 @@
 package com.bug.tripnote.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bug.tripnote.dao.mapper.FavoriteMainMapper;
 import com.bug.tripnote.model.CommentsVO;
+import com.bug.tripnote.model.FavoritedetailVO;
 import com.bug.tripnote.model.KeepingVO;
 import com.bug.tripnote.model.LikesVO;
 import com.bug.tripnote.model.PostingVO;
@@ -116,4 +118,16 @@ public class FavoriteMainViewDAO {
 		return mapper.selectPostingLikecount(posting_no);
 	}
 	
+	// 관심사 키워드로 조회한 포스팅 리스트
+	public List<PostingVO> selectPostingListByKeyword(String favorite_no, String login_user_no) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("login_user_no", login_user_no);
+		map.put("favorite_no", favorite_no);
+		
+		logger.info(map.toString());
+		
+		List<PostingVO> postingList = mapper.selectPostingListByKeyword(map);
+		
+		return postingList;
+	}
 }

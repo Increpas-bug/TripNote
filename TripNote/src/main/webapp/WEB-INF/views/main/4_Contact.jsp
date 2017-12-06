@@ -24,6 +24,9 @@
 			    	${sessionScope.member.user_nickname} 님 Hi!!
 					<a href="favoriteMainView.do">FavoriteMainView.do</a>
 					<br>
+					<!-- 관심사 키워드 테스트 -->
+					<a href="favoriteSelectView.do?favorite_no=1">favoriteSelectView.do</a>
+					<br>
 					<!-- My -->
 					<a href="2_My_Main.do?user_no=${sessionScope.member.user_no}">2_My_Main.do</a>
 					<a href="updateMemberForm.do?user_no=${sessionScope.member.user_no}">회원정보수정</a>

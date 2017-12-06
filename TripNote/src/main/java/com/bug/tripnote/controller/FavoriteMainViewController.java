@@ -40,5 +40,18 @@ public class FavoriteMainViewController {
 //		return "posting/favoriteMainView";
 		return "posting/2_Main2";
 	}
+
+	@RequestMapping(value = "/favoriteSelectView.do", method = RequestMethod.GET)
+	public String favoriteSelectView(String favorite_no, HttpSession session, Model model) {
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		String login_user_no = vo.getUser_no();
+		
+		// 관심사 키워드를 기준으로 조회한 게시글 리스트
+		List<PostingVO> postingList = service.selectPostingListByKeyword(favorite_no, login_user_no);
+		
+		model.addAttribute("postingList", postingList);
+		
+		return "posting/2_Main2";
+	}
 	
 }
