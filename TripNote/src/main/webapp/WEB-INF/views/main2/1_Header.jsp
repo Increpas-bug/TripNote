@@ -76,6 +76,18 @@
 			</button>
 
 			<!-- manu -->
+			
+			<span>${sessionScope.member.user_nickname}님 환영합니다.</span>
+			
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav text-uppercase ml-auto">
+					
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="updateMemberForm.do?user_no=${sessionScope.member.user_no}">update</a></li>
+					
+				</ul>
+			</div>
+			
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
 					
@@ -84,7 +96,6 @@
 					
 				</ul>
 			</div>
-		</div>
 	
 		<!-- 검색ㅅㅈ -->
 		<div class="form-group" style="margin-top: 1%;">
