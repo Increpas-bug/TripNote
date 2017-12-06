@@ -92,6 +92,16 @@
 				<ul class="navbar-nav text-uppercase ml-auto">
 					
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="logout.do?user_no=${sessionScope.member.user_no}">logout</a></li>
+					
+				</ul>
+			</div>
+			
+			
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav text-uppercase ml-auto">
+					
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="2_My_Main.do?user_no=${sessionScope.member.user_no}">MyBlog</a></li>
 					
 				</ul>
