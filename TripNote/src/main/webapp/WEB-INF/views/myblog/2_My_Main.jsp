@@ -41,6 +41,11 @@
 	
 <!-- 스타일 수정사항 직접 정의 -->
 <style type="text/css">
+li a {
+	font-size : 20px;
+}
+
+
 .col-sm-12 {
 	padding-bottom: 30px;
 	font-size: 14px;
