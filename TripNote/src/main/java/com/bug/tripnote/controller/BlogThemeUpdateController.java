@@ -32,7 +32,7 @@ public class BlogThemeUpdateController {
 	public String UpdateForm (@RequestParam String user_no, Model model) {
 		BlogVO bvo = blogService.blogInfoSelect(user_no);
 		model.addAttribute("blogVO", bvo);
-		return "myblog/4_blogtheme";
+		return "myblog/3_blogtheme";
 	}
 	
 	@RequestMapping(value = "/profile_photo_update.do", method = RequestMethod.POST)
@@ -57,10 +57,10 @@ public class BlogThemeUpdateController {
 				System.out.println(fileName + " upath" + "에 저장");
 				System.out.println("파일크기=" + mfile.getSize() + "바이트");
 			}
-			return "redirect:3_My_Main.do?user_no="+bvo.getUser_no();
+			return "redirect:2_My_Main.do?user_no="+bvo.getUser_no();
 		} 
 		catch (Exception e) {
-			return "redirect:3_My_Main.do?user_no="+bvo.getUser_no();
+			return "redirect:2_My_Main.do?user_no="+bvo.getUser_no();
 		}
 	}
 		
@@ -86,17 +86,17 @@ public class BlogThemeUpdateController {
 				System.out.println(fileName + " upath" + "에 저장");
 				System.out.println("파일크기=" + mfile.getSize() + "바이트");
 			}
-			return "redirect:3_My_Main.do?user_no="+bvo.getUser_no();
+			return "redirect:2_My_Main.do?user_no="+bvo.getUser_no();
 		} 
 		catch (Exception e) {
-			return "redirect:3_My_Main.do?user_no="+bvo.getUser_no();
+			return "redirect:2_My_Main.do?user_no="+bvo.getUser_no();
 		}
 	}
 	@RequestMapping(value = "/blog_title_write.do", method = RequestMethod.POST)
 	public String blogTitleUpdate(BlogVO bvo) {
 		blogService.blogTitleUpdate(bvo);
 		blogService.blogDetailUpdate(bvo);
-		return "redirect:3_My_Main.do?user_no="+bvo.getUser_no();
+		return "redirect:2_My_Main.do?user_no="+bvo.getUser_no();
 		
 	}	
 	

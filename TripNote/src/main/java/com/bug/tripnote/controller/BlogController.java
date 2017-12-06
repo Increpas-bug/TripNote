@@ -64,6 +64,6 @@ public class BlogController {
 		model.addAttribute("blogVO", bvo);
 		model.addAttribute("postingList", postingList);
 		
-		return "myblog/3_My_Main";
+		return "myblog/2_My_Main";
 	}
 }

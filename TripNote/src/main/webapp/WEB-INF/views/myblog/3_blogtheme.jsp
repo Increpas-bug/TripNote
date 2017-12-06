@@ -16,7 +16,8 @@
 <body>
 
 	<h1>프로필 사진 변경 테스트</h1>
-	<form:form method="post" action="profile_photo_update.do?user_no=1"
+	<form:form method="post"
+		action="profile_photo_update.do?user_no=${sessionScope.member.user_no}"
 		enctype="multipart/form-data" commandName="blog">
 		<table>
 			<tr>
@@ -27,7 +28,7 @@
 		<input type="submit" value="등록">
 	</form:form>
 	<h1>타이틀 사진 추가</h1>
-	<form:form action="title_photo_update.do?user_no=1" method="post"
+	<form:form action="title_photo_update.do?user_no=${sessionScope.member.user_no}" method="post"
 		enctype="multipart/form-data" commandName="blog">
 		<table>
 			<tr>
@@ -37,7 +38,7 @@
 		</table>
 		<input type="submit" value="등록">
 	</form:form>
-	<form:form method="post" action="blog_title_write.do?user_no=1"
+	<form:form method="post" action="blog_title_write.do?user_no=${sessionScope.member.user_no}"
 		enctype="multipart/form-data" commandName="blog">
 		<table>
 			<tr>
