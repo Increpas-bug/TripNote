@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bug.tripnote.model.BlogVO;
 import com.bug.tripnote.model.MemberVO;
 import com.bug.tripnote.model.PostingVO;
 import com.bug.tripnote.service.PostingWriteService;
@@ -36,7 +37,7 @@ public class PostingWriteController {
 	
 	
 		@RequestMapping(method = RequestMethod.POST)
-		public String onSubmit(@ModelAttribute("Posting") PostingVO pVo, HttpSession session) {
+		public String onSubmit(@ModelAttribute("Posting") PostingVO pVo, HttpSession session, BlogVO bVo) {
 			logger.info(pVo.toString());
 			
 			MemberVO mVo = (MemberVO) session.getAttribute("member");
@@ -69,10 +70,10 @@ public class PostingWriteController {
 				service.insertPost(pVo, user_no);
 				service.insertTag(pVo.getPosting_no(), pVo.getTag());
 				
-				return "posting/2_Posting_write";  
+				return "redirect:2_My_Main.do?user_no="+bVo.getUser_no();
 				
 			} catch (Exception e) {
-				return "posting/2_Posting_write";
+				return "redirect:2_My_Main.do?user_no="+bVo.getUser_no();
 			}
 		}
 

@@ -56,7 +56,7 @@
 	<br />
 	<br />
 
-	<form:form action="posting_Write.do" method="post" commandName="Posting" enctype="multipart/form-data">
+	<form:form action="posting_Write.do?user_no=${sessionScope.member.user_no}" method="post" commandName="Posting" enctype="multipart/form-data">
 
 		<section id="contact">
 			<div class="container">

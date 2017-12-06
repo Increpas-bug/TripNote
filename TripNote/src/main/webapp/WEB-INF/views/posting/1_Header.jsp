@@ -90,14 +90,27 @@
 
 		</div>
 		
-		<!-- 검색 -->
+		<!-- 검색ㅅㅈ -->
 		<div style="margin-right: 3%; font-size: 15px;">
-			<input class="form-control" id="search" type="search"
-				placeholder="검색어를 입력해주세요. *"
+		<form:form method="post" action="posting_Search.do" id="searchForm">
+			<input class="form-control" id="search" type="search" name="tag"
+				placeholder="검색어를 입력해주세요. ㅎ"
 				style="font-size: 15px; padding: 0 20px 0 15px;">
+		
+		</form:form>
 		</div>
-		<button class="btn btn-primary btn-xl text-uppercase" type="submit"
+		<button class="btn btn-primary btn-xl text-uppercase" type="submit" id="searchTag"
 			style="margin-left: 0.5px; padding: 5 10 5 10; font-size: 16px;">Search</button>
+		
+		<script type="text/javascript">
+		    $(function() {
+		    	/* 검색버튼 클릭시 */
+				$(document).on('click', '#searchTag', function(e) { //e = 이벤트 객체
+					$('#searchForm').submit();
+				});
+			});
+		</script>
+			
 	</nav>
 </body>
 </html>
